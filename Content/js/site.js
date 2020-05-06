@@ -19,8 +19,7 @@ function LogIn() {
 
 
 function Register() {
-    Insert_Data_Register(WebSiteUrl + "/Home/Register");
-    location.replace(WebSiteUrl + "/Home/Register");
+    location.replace(WebSiteUrl + "/Home/SignUp");
 }
 
 

@@ -61,7 +61,7 @@ namespace WebHome.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://localhost:44330.
+        ///   Looks up a localized string similar to https://localhost:.
         /// </summary>
         internal static string websiteurl {
             get {

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Npgsql;
+using WebHome.Domain.Models;
 using WebHome.Models;
 
 namespace WebHome.Controllers
@@ -36,14 +38,17 @@ namespace WebHome.Controllers
 
         public IActionResult Login([FromBody] Login values)
         {
+
             return Ok();
             
         }
 
-        public IActionResult Register()
+        public IActionResult SignUp()
         {
-            return View();
+            return View("Register");
         }
+
+
 
     }
 }
