@@ -27,7 +27,7 @@ namespace WebHome.Controllers
 
                
 
-                var version = cmd.ExecuteScalar().ToString();
+                
             }
             catch(Exception ex)
             {
