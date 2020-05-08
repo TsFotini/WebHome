@@ -25,8 +25,6 @@ namespace WebHome.Controllers
 
                 var  Query = @"Insert into ";
 
-               
-
                 
             }
             catch(Exception ex)

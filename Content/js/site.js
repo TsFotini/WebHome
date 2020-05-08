@@ -1,4 +1,8 @@
-﻿//Popup Functions
+﻿'use strict';
+const e = React.createElement;
+const signBtn = document.querySelector('#RegisterBtn');
+ReactDOM.render(e('button'), signBtn);
+//Popup Functions
 function loginBtnClick() {
     var popup = document.getElementById("popupId");
     popup.style.display = "block";
