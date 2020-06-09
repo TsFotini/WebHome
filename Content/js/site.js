@@ -31,10 +31,6 @@ function Apply() {
     else if (host.checked && tenant.checked) {
         role = 3;
     }
-    else {
-        //visitor id
-        role = 4;
-    }
     //console.log(role);
     return role;
     
@@ -88,9 +84,10 @@ function Submit() {
         var surname = document.getElementById("surname").value;
         var mobile = document.getElementById("mobile").value;
         var photo = document.getElementById("photo").value;
-        console.log(photo);
         var data = { usrname: username, pass: password, email: email, name: name, surname: surname, phone_number: mobile, images: photo, role_id: role }
         Insert_Data_Register(WebSiteUrl + "/Register/Register", data);
+        if (role == 1 || role == 3)
+            alert("We will send your form to the admin, please wait for the responce later");
     }
    
 }

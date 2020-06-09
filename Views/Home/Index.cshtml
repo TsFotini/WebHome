@@ -1,9 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    
-}
 
-<div class="text-center">
-    <h1 class="display-4">Rent a Home Now...</h1>
-    
-</div>
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/index.css" />
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Rent a Home Now...</h1>
+        <br /><br />
+        <input name="type" list="apartments" />
+        <datalist id="apartments" style="width:100%"></datalist>
+    </div>
+
+    <script type="text/javascript">
+            var WebSiteUrl = "@Configs.WebSiteUrl";
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/index.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

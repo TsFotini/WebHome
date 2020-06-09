@@ -6,61 +6,57 @@
 
 <label for="uname"><b>Username :</b></label>
 <br />
-<input type="text" placeholder="Enter Username" name="uname" id="usrname1" onchange="check_usrname()" required>
+<input type="text" class="inpu" placeholder="Enter Username" name="uname" id="usrname1" onchange="check_usrname()" required>
 <br />
 <br />
 
 <label for="psw"><b>Password : </b></label>
 <br />
-<input type="password" placeholder="Enter Password" name="psw" id="pass1" required>
+<input type="password" class="inpu" placeholder="Enter Password" name="psw" id="pass1" required>
 <br />
 <br />
 
 <label for="pswver"><b>Verify Password : </b></label>
 <br />
-<input type="password" placeholder="Password Verification" name="pswver" id="passver" required>
+<input type="password" class="inpu" placeholder="Password Verification" name="pswver" id="passver" required>
 <br />
 <br />
 
 <label for="email"><b>e-mail: </b></label>
 <br />
-<input type="email" placeholder="Enter e-mail" name="email" id="mail" required>
+<input type="email" class="inpu" placeholder="Enter e-mail" name="email" id="mail" required>
 <br />
 <br />
 
 <label for="Name"><b>Name: </b></label>
 <br />
-<input type="text" placeholder="Enter your Name" name="Name" id="name">
+<input type="text" class="inpu" placeholder="Enter your Name" name="Name" id="name">
 <br />
 <br />
 
 <label for="Surname"><b>Surname: </b></label>
 <br />
-<input type="text" placeholder="Enter your Surname" name="Surname" id="surname">
+<input type="text" class="inpu" placeholder="Enter your Surname" name="Surname" id="surname">
 <br />
 <br />
 
 <label for="mob"><b>Phone Number: </b></label>
 <br />
-<input type="text" placeholder="Enter your Mobile Phone" name="mob" id="mobile">
+<input type="text" class="inpu" placeholder="Enter your Mobile Phone" name="mob" id="mobile">
 <br />
 <br />
 
 <label for="pht"><b>Photo: </b></label>
 <br />
-<input type="text" placeholder="Upload Photo" name="pht" id="photo">
+<input type="text" class="inpu" placeholder="Upload Photo" name="pht" id="photo">
 <br />
 <br />
 
-<input type="checkbox" id="host" name="host1" value="hst">
-<label for="host1"> I am a Host</label>
-<br>
-<input type="checkbox" id="tenant" name="tenant2" value="rent">
-<label for="tenant2"> I am a Tenant</label>
-<br>
-<br>
-<button type="button" onclick="Apply()">Apply</button>
-<br/><br/>
-
-<button type="button" class="loginBtn" onclick="Submit()">Sign up</button>
-
+<div class="clearfix">
+    <input type="checkbox" id="host" name="host1" value="hst">
+    <label for="host1"> I am a Host</label>
+    <input type="checkbox" id="tenant" name="tenant2" value="rent" checked>
+    <label for="tenant2"> I am a Tenant</label>
+    <button type="button" onclick="Apply()">Apply</button>
+</div>
+<button type="button" class="registerButton" onclick="Submit()">Sign up</button>

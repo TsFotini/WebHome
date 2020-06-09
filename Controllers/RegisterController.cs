@@ -41,7 +41,7 @@ namespace WebHome.Controllers
                 cmd.Parameters.AddWithValue("@m_role_id", values.role_id);
                 cmd.Connection = npgsqlConnection;
                 cmd.ExecuteNonQuery();
-
+                npgsqlConnection.Close();
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace WebHome.Controllers
                 {
                     res = 0;
                 }
-                
+                npgsqlConnection.Close();
             }
             catch(Exception ex)
             {
