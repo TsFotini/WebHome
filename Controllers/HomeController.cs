@@ -43,10 +43,7 @@ namespace WebHome.Controllers
             
         }
 
-        public IActionResult SignUp()
-        {
-            return View("Register");
-        }
+        
 
 
 

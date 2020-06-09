@@ -24,6 +24,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                      
                     </ul>
                 </div>
                 <button type="button" class="loginBtn" onclick="loginBtnClick()">Log in</button>
@@ -41,11 +42,15 @@
                         <br />
                         <input type="password" placeholder="Enter Password" name="psw" id="pass" required>
                         <br /> <br />
-                        <button type="submit" onclick="LogIn()">Log in</button>
+                        <button type="button" onclick="LogIn()">Log in</button>
 
                     </div>
                 </div>
-                <button type="button" class="loginBtn" style="background-color: aquamarine" onclick="Register()">Sign up</button>
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Index">Register</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
