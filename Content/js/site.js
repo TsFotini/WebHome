@@ -43,9 +43,6 @@ function Apply() {
 function check_usrname() {
     var username = document.getElementById("usrname1").value;
     exists = Get_Usernames_Request(WebSiteUrl + "Register/UsrExist?value=" + username.toString());
-    if (exists == 1)
-        document.getElementById("usrname").innerHTML = " "; 
-    console.log(document.getElementById("usrname1").value);
 }
 
 function check_credentials() {
@@ -119,9 +116,10 @@ function Get_Usernames_Request(url, data) {
         data: JSON.stringify(data),
         traditional: true
     }).done(function (valid) {
-        if (valid == 1) {
+        if (valid.valid == 1) {
             alert("The username you have chosen already exists, please pick another username");
-            
+            usr = document.getElementById("usrname1");
+            usr.value = "";
         } else {
 
         }
