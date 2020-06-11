@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -13,6 +14,7 @@ using WebHome.Models;
 
 namespace WebHome.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -38,12 +40,6 @@ namespace WebHome.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Login([FromBody] Login values)
-        {
-            
-            return Ok();
-            
-        }
 
         [HttpGet]
         public string GetApartmentsTypes()
@@ -52,15 +48,12 @@ namespace WebHome.Controllers
             try
             {
                 var data = new List<ApartmentType>();
-                
-                var cs = "Host=localhost;Username=postgres;Password=postgres;Database=mydata";
 
-                var npgsqlConnection = new NpgsqlConnection(cs);
-                npgsqlConnection.Open();
+                var db = new DB();
                 var Query = @"select id,description from apartment_type";
                 var cmd = new NpgsqlCommand();
                 cmd.CommandText = Query;
-                cmd.Connection = npgsqlConnection;
+                cmd.Connection = db.npgsqlConnection;
                 NpgsqlDataReader DataReader;
                
                 DataReader = cmd.ExecuteReader();
@@ -83,6 +76,7 @@ namespace WebHome.Controllers
                 DataReader.Dispose();
                 data = data.OrderByDescending(a => a.id).ToList();
                 jsonObject = JsonConvert.SerializeObject(data);
+                db.close();
 
             }
             catch (Exception ex)

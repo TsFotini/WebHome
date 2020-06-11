@@ -13,8 +13,10 @@ function LogIn() {
     var username = document.getElementById("usrname").value;
     var password = document.getElementById("pass").value;
     var data = { usrname: username, pass: password }
-    Insert_Credentials_Request(WebSiteUrl +"/Home/Login", data);
+    Insert_Credentials_Request(WebSiteUrl + "/Login/Login", data);
 }
+
+
 
 
 //register functions
@@ -22,10 +24,10 @@ function Apply() {
     var role;
     var host = document.getElementById("host");
     var tenant = document.getElementById("tenant");
-    if (host.checked) {
+    if (host.checked && !(tenant.checked)) {
         role = 1;
     }
-    else if (tenant.checked) {
+    else if (tenant.checked && !(host.checked)) {
         role = 2;
     }
     else if (host.checked && tenant.checked) {

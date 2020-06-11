@@ -20,13 +20,10 @@ namespace WebHome.Controllers
         {
             try
             {
-                var cs = "Host=localhost;Username=postgres;Password=postgres;Database=mydata";
-
-                var npgsqlConnection = new NpgsqlConnection(cs);
-                npgsqlConnection.Open();
-                int id = Create_Id(npgsqlConnection);
-                var Query = @"INSERT INTO register (user_id, role_id, usrname, pass, name, surname,phone_number, images,created_on,email) 
-                                VALUES (@m_user_id,@m_role_id,@m_usrname,@m_pass,@m_name,@m_surname,@m_phone_number,@m_images,@m_created_on,@m_email)";
+                var db = new DB();
+                int id = Create_Id(db.npgsqlConnection);
+                var Query = @"INSERT INTO register (user_id, role_id, usrname, pass, name, surname,phone_number, images,created_on,email,accepted) 
+                                VALUES (@m_user_id,@m_role_id,@m_usrname,@m_pass,@m_name,@m_surname,@m_phone_number,@m_images,@m_created_on,@m_email,@m_accepted)";
                 var cmd = new  NpgsqlCommand();
                 cmd.CommandText = Query;
                 cmd.Parameters.AddWithValue("@m_images", values.images);
@@ -39,9 +36,17 @@ namespace WebHome.Controllers
                 cmd.Parameters.AddWithValue("m_created_on", DateTime.Now);
                 cmd.Parameters.AddWithValue("@m_user_id", id);
                 cmd.Parameters.AddWithValue("@m_role_id", values.role_id);
-                cmd.Connection = npgsqlConnection;
+                if(values.role_id == 1 || values.role_id == 3)
+                {
+                    cmd.Parameters.AddWithValue("@m_accepted", 0);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@m_accepted", 1);
+                }
+                cmd.Connection = db.npgsqlConnection;
                 cmd.ExecuteNonQuery();
-                npgsqlConnection.Close();
+                db.close();
             }
             catch (Exception ex)
             {
@@ -97,14 +102,12 @@ namespace WebHome.Controllers
            
             try
             {
-                var cs = "Host=localhost;Username=postgres;Password=postgres;Database=mydata";
-                var npgsqlConnection = new NpgsqlConnection(cs);
-                npgsqlConnection.Open();
+                var db = new DB();
                 var Query = @"select exists(select 1 from register where usrname = @m_usrname)";
                 var cmd = new NpgsqlCommand();
                 cmd.CommandText = Query;
                 cmd.Parameters.AddWithValue("@m_usrname", value);
-                cmd.Connection = npgsqlConnection;
+                cmd.Connection = db.npgsqlConnection;
                 cmd.ExecuteNonQuery();
                 
                 NpgsqlDataReader DataReader;
@@ -130,7 +133,7 @@ namespace WebHome.Controllers
                 {
                     res = 0;
                 }
-                npgsqlConnection.Close();
+                db.close();
             }
             catch(Exception ex)
             {

@@ -9,3 +9,7 @@
 input[list]:focus {
     width: 100%;
 }
+
+.clearfix {
+    display: inline-block;
+}

@@ -23,8 +23,20 @@ function Get_Data(url, data) {
     });
 }
 
+$("#enddate").change(function () {
+    var startDate = document.getElementById("startdate").value;
+    var endDate = document.getElementById("enddate").value;
+
+    if ((Date.parse(endDate) <= Date.parse(startDate))) {
+        alert("End date should be greater than Start date");
+        document.getElementById("enddate").value = "";
+    }
+});
+
 
 
 Get_Data(WebSiteUrl + "/Home/GetApartmentsTypes");
+
+
 
 
