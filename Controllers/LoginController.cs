@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using WebHome.Models;
@@ -11,10 +12,15 @@ namespace WebHome.Controllers
 {
     public class LoginController : Controller
     {
-        [HttpPost]
-        public IActionResult Login([FromBody] Login values)
+        static Session user_session_created;
+        public IActionResult Index()
         {
-            IActionResult response = Unauthorized();
+            return View("/Views/Login.cshtml");
+        }
+        [HttpPost]
+        public IActionResult Authenticate([FromBody]Login values)
+        {
+            IActionResult response = Ok();
             try
             {
                 var db = new DB();
@@ -49,23 +55,41 @@ namespace WebHome.Controllers
                 DataReader.Close();
                 DataReader.Dispose();
                 db.close();
-                if(data.Count > 0)
+                if (data.Count > 0)
                 {
+                    user_session_created = new Session(data[0].user_id, data[0].role_id, data[0].usrname, 1);
                     response = Ok();
+                }
+                else
+                {
+                    user_session_created = new Session(-1, -1, "", -1);
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
             return response;
+        }
 
+        [HttpGet]
+        public JsonResult Log()
+        {
+            int res = 0;
+            if (user_session_created.isloggedIn == 1 && user_session_created.role_id == 0) {
+                res = 1;
+            }
+            var obj = new
+            {
+                valid = res
+            };
+            return Json(obj); 
         }
 
         public IActionResult Logout()
         {
-            return Ok();
+            return View("/Views/Register.cshtml");
         }
     }
 }

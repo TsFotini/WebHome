@@ -1,19 +1,11 @@
 ﻿//Popup Functions
-function loginBtnClick() {
-    var popup = document.getElementById("popupId");
-    popup.style.display = "block";
-}
-
-function closePopup() {
-    var popup = document.getElementById("popupId");
-    popup.style.display = "none";
-}
 
 function LogIn() {
     var username = document.getElementById("usrname").value;
     var password = document.getElementById("pass").value;
     var data = { usrname: username, pass: password }
-    Insert_Credentials_Request(WebSiteUrl + "/Login/Login", data);
+    Insert_Credentials_Request(WebSiteUrl + "/Login/Authenticate", data);
+    Get_Log_Request(WebSiteUrl + "/Login/Log")
 }
 
 
@@ -98,6 +90,7 @@ function Insert_Credentials_Request(url, data) {
     $.ajax(url, {
         method: "POST",
         dataType: "json",
+        async: false,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data)
     }).done(function (result) {
@@ -141,6 +134,29 @@ function Insert_Data_Register(url, data) {
 
     });
 }
+
+function Get_Log_Request(url, data) {
+    $.ajax(url, {
+        method: "GET",
+        dataType: "json",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        traditional: true
+    }).done(function (valid) {
+        if (valid.valid == 1) {
+            alert("Admin is in");
+            window.location.replace(WebSiteUrl + "/Admin/Index");
+        } else {
+            alert("NOT Admin is in");
+            window.location.replace(WebSiteUrl);
+        }
+        return valid;
+    }).fail(function (xhr) {
+
+    });
+}
+
 
 
 
