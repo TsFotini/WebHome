@@ -60,6 +60,13 @@ namespace WebHome.Properties {
             }
         }
         
+        
+        internal static string cs {
+            get {
+                return ResourceManager.GetString("cs", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to https://localhost:.
         /// </summary>

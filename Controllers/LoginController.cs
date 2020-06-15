@@ -86,7 +86,7 @@ namespace WebHome.Controllers
             };
             return Json(obj); 
         }
-
+        
         public IActionResult Logout()
         {
             return View("/Views/Register.cshtml");
