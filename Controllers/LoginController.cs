@@ -58,6 +58,7 @@ namespace WebHome.Controllers
                 if (data.Count > 0)
                 {
                     user_session_created = new Session(data[0].user_id, data[0].role_id, data[0].usrname, 1);
+                    History();
                     response = Ok();
                 }
                 else
@@ -86,7 +87,29 @@ namespace WebHome.Controllers
             };
             return Json(obj); 
         }
-        
+
+        [HttpPost]
+        public void History()
+        {
+            try
+            {
+                var db = new DB();
+                var Query = @"INSERT INTO login (user_id, last_login) 
+                                VALUES (@m_user_id,@m_last_login)";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_user_id", user_session_created.user_id);
+                cmd.Parameters.AddWithValue("@m_last_login", DateTime.Now);
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+                db.close();
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
         public IActionResult Logout()
         {
             return View("/Views/Register.cshtml");

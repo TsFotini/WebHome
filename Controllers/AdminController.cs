@@ -55,7 +55,8 @@ namespace WebHome.Controllers
             {
 
             }
-            return JsonConvert.SerializeObject(obj1);
+            var str = JsonConvert.SerializeObject(obj1);
+            return str;
         }
     }
 }
