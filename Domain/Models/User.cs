@@ -17,6 +17,7 @@ namespace WebHome.Domain.Models
         public string images { get; set; }
         public DateTime created_on { get; set; }
         public DateTime last_login { get; set; }
+        public int accepted { get; set; }
 
     }
 }

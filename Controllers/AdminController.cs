@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace WebHome.Controllers
             {
                 var db = new DB();
                 
-                var Query = @"select rr.usrname, rr.email, r.description, rr.name, rr.surname, rr.phone_number, rr.images, rr.created_on 
+                var Query = @"select rr.usrname, rr.email, r.description, rr.name, rr.surname, rr.phone_number, rr.images, rr.created_on, rr.accepted
                               from roles r, register rr 
                               where r.role_id = rr.role_id and rr.user_id = @m_user_id";
                 var cmd = new NpgsqlCommand();
@@ -51,7 +52,8 @@ namespace WebHome.Controllers
                             surname = DataReader.GetValue(4).ToString(),
                             phone_number = DataReader.GetValue(5).ToString(),
                             images = DataReader.GetValue(6).ToString(),
-                            created_on = Convert.ToDateTime(DataReader.GetValue(7))
+                            created_on = Convert.ToDateTime(DataReader.GetValue(7)),
+                            accepted = Convert.ToInt32(DataReader.GetValue(8)),
                         }) ;
                     }
 
@@ -67,6 +69,31 @@ namespace WebHome.Controllers
 
             }
             return JsonConvert.SerializeObject(data);
+        }
+
+        [HttpPut]
+        public IActionResult SetAccepted([FromBody]int value)
+        {
+            try
+            {
+                var db = new DB();
+                var Query = @"UPDATE register
+                                SET accepted = 1
+                                WHERE
+	                            user_id = @m_user_id";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_user_id", value);
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+                db.close();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return Ok();
+
         }
 
         [HttpGet]

@@ -135,11 +135,10 @@ function Insert_Data_Register(url, data) {
     });
 }
 
-function Get_Log_Request(url, data) {
-    $.ajax(url, {
+async function Get_Log_Request(url, data) {
+    await $.ajax(url, {
         method: "GET",
         dataType: "json",
-        async: false,
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data),
         traditional: true

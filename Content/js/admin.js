@@ -41,15 +41,22 @@ async function getMyModal(id) {
     var span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
     var obj = await Get_Info(WebSiteUrl + '/Admin/GetInfo?value=' + id.toString());
-    console.log(obj.usrname);
-    $('#mb').append('<div id="innerdiv">' + '<p style="font-weight: bold;">Username: ' + obj.usrname + '</p >' +
-        '<p style="font-weight: bold;">Email: ' + obj.email + '</p>'+
+    var str = '<div id="innerdiv">' + '<p style="font-weight: bold;">Username: ' + obj.usrname + '</p >' +
+        '<p style="font-weight: bold;">Email: ' + obj.email + '</p>' +
         '<p style="font-weight: bold;">Role: ' + obj.role + '</p>' +
         '<p style="font-weight: bold;">Name: ' + obj.name + '</p>' +
         '<p style="font-weight: bold;">Surname: ' + obj.surname + '</p>' +
         '<p style="font-weight: bold;">Phone: ' + obj.phone_number + '</p>' +
         '<p style="font-weight: bold;">Account created on: ' + obj.created_on.toString() + '</p>' +
-        '</div > ');
+        '</div > ';
+    if (obj.accepted == 1) {
+        $('#mb').append(str);
+    }
+    else {
+        str = str + '<button type="button" id="acceptButton"'+ 'onclick="Acception(' + id +')">Accept</button>';
+        $('#mb').append(str);
+    }
+   
     span.onclick = function () {
         modal.style.display = "none";
         document.getElementById("mb").innerHTML = "";
@@ -60,6 +67,25 @@ async function getMyModal(id) {
             document.getElementById("mb").innerHTML = "";
         }
     }
+}
+
+async function Insert_Acception(url, data) {
+    await $.ajax(url, {
+        method: "PUT",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+async function Acception(data) {
+    ok = document.getElementById("acceptButton");
+    console.log(data);
+    await Insert_Acception(WebSiteUrl + '/Admin/SetAccepted',data);
 }
 
 async function Create_table() {
