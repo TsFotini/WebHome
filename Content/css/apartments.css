@@ -1,0 +1,7 @@
+﻿.addButton {
+    position: absolute;
+    border: none;
+    color: black;
+    cursor: pointer;
+    width: 30%;
+}

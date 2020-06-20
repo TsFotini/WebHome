@@ -146,8 +146,12 @@ async function Get_Log_Request(url, data) {
         if (valid.valid == 1) {
             alert("Admin is in");
             window.location.replace(WebSiteUrl + "/Admin/Index");
-        } else {
-            alert("NOT Admin is in");
+        }
+        else if (valid.valid == 2) {
+            alert("Host is in");
+            window.location.replace(WebSiteUrl + "/Apartments/Index");
+        }
+        else {
             window.location.replace(WebSiteUrl);
         }
         return valid;

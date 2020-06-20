@@ -1,5 +1,5 @@
 ﻿data = []
-
+var click_accepted = 0;
 async function Get_Data(url, data) {
     await $.ajax(url, {
         method: "GET",
@@ -53,18 +53,25 @@ async function getMyModal(id) {
         $('#mb').append(str);
     }
     else {
-        str = str + '<button type="button" id="acceptButton"'+ 'onclick="Acception(' + id +')">Accept</button>';
-        $('#mb').append(str);
+        str = str + '<button type="button" class="acceptButton"'+ 'onclick="Acception(' + id +')">Accept</button>';
+        $('#mb').append(str);   
     }
    
     span.onclick = function () {
         modal.style.display = "none";
         document.getElementById("mb").innerHTML = "";
+        if (click_accepted > 0) {
+            location.reload(true);
+        }
+        
     }
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
             document.getElementById("mb").innerHTML = "";
+            if (click_accepted > 0) {
+                location.reload(true);
+            }
         }
     }
 }
@@ -82,14 +89,16 @@ async function Insert_Acception(url, data) {
     });
 }
 
+
 async function Acception(data) {
+    click_accepted++;
     ok = document.getElementById("acceptButton");
     console.log(data);
     await Insert_Acception(WebSiteUrl + '/Admin/SetAccepted',data);
 }
 
 async function Create_table() {
-    dataSet = Get_Data(WebSiteUrl + '/Admin/GetUsers'); 
+   //dataSet = Get_Data(WebSiteUrl + '/Admin/GetUsers'); 
     var table = $('#example').DataTable({
             data: await Get_Data(WebSiteUrl + '/Admin/GetUsers') ,
             columns: [
@@ -106,9 +115,6 @@ async function Create_table() {
 }
 
 Create_table();
-
-
-
 
     
 

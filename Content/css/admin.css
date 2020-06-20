@@ -83,16 +83,8 @@
     color: white;
 }
 
-.loginBtn {
-    position: relative;
-    border: none;
-    color: black;
-    cursor: pointer;
-    width: 15%;
-}
-
 .acceptButton {
-    background-color: #4CAF50;
+    background-color: cadetblue;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;

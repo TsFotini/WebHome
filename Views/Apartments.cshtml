@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Apartments";
+}
+
+<h1>Apartments</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="~/css/apartments.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+</head>
+<body>
+
+    <table id="example1" class="display" width="100%"></table>
+    <br /><br />
+    <button type="button" style="float: right;" class="addButton" onclick="AddPlace()">Add Place (+)</button>
+    <br /><br />
+    <div id="innerdiv"></div>
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var usrname = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+    </script>
+
+    <script src="~/js/apartments.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
