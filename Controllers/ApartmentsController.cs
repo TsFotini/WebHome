@@ -23,7 +23,7 @@ namespace WebHome.Controllers
             try
             {
                 var db = new DB();
-                var Query = @"select ap.id, ap.address, ap.free_from, ap.free_to , apt.description from apartments ap, apartment_type apt where user_id = @:m_user_id and ap.type_id = apt.id";
+                var Query = @"select id, address, free_from, free_to  from apartments where user_id = @m_user_id";
                 var cmd = new NpgsqlCommand();
                 cmd.CommandText = Query;
                 cmd.Parameters.AddWithValue("@m_user_id", Int32.Parse(value));
@@ -44,7 +44,7 @@ namespace WebHome.Controllers
                             address = DataReader.GetValue(1).ToString(),
                             free_from = Convert.ToDateTime(DataReader.GetValue(2)),
                             free_to = Convert.ToDateTime(DataReader.GetValue(3)),
-                            type_description = DataReader.GetValue(4).ToString()
+       
                         });
                     }
 
@@ -61,6 +61,44 @@ namespace WebHome.Controllers
             }
             var str = JsonConvert.SerializeObject(data);
             return str;
+        }
+
+        [HttpPost]
+        public IActionResult InsertApartment([FromBody] Apartments values)
+        {
+            try
+            {
+                var db = new DB();
+                var Query = @"INSERT INTO apartments (user_id, address, reach_place, free_from, free_to, max_people,min_price, cost_per_person,type_id,description,num_beds,num_baths,num_bedrooms,area,rules,images,lonlat, type_description) 
+                                VALUES (@m_user_id, @m_address, @m_reach_place, @m_free_from, @m_free_to, @m_max_people,@m_min_price, @m_cost_per_person,@m_type_id,@m_description,@m_num_beds,@m_num_baths,@m_num_bedrooms,@m_area,@m_rules,@m_images,@m_lonlat,@m_type_description)";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_user_id", values.user_id);
+                cmd.Parameters.AddWithValue("@m_address", values.address);
+                cmd.Parameters.AddWithValue("@m_reach_place", values.reach_place);
+                cmd.Parameters.AddWithValue("@m_free_from", values.free_from);
+                cmd.Parameters.AddWithValue("@m_free_to", values.free_to);
+                cmd.Parameters.AddWithValue("@m_max_people", values.max_people);
+                cmd.Parameters.AddWithValue("@m_min_price", values.min_price);
+                cmd.Parameters.AddWithValue("m_cost_per_person", values.cost_per_person);
+                cmd.Parameters.AddWithValue("@m_description", values.description);
+                cmd.Parameters.AddWithValue("@m_num_beds", values.num_beds);
+                cmd.Parameters.AddWithValue("@m_num_baths", values.num_baths);
+                cmd.Parameters.AddWithValue("@m_num_bedrooms", values.num_bedrooms);
+                cmd.Parameters.AddWithValue("@m_area", values.area);
+                cmd.Parameters.AddWithValue("@m_rules", values.rules);
+                cmd.Parameters.AddWithValue("@m_images", values.images);
+                cmd.Parameters.AddWithValue("@m_lonlat", values.lonlat);
+                cmd.Parameters.AddWithValue("@m_type_description", values.type_description);
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+                db.close();
+            }
+            catch(Exception Ex)
+            {
+
+            }
+            return Ok();
         }
     }
 }
