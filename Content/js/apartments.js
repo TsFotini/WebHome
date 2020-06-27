@@ -68,8 +68,8 @@ async function Insert_Request(url, data) {
     });
 }
 
-var lonlat;
-function SubmitPlace() {
+var lonlat = "";
+async function SubmitPlace() {
     var address = document.getElementById('apaddress').value;
     var reach = document.getElementById('reach1').value;
     var price = document.getElementById('price').value;
@@ -88,30 +88,39 @@ function SubmitPlace() {
     if (address == "" || price == "" || area == "" || priceperson == "" || people == "" || beds == "" || baths == "" || bedrooms == "" || to == "" || from == "") {
         alert("Please fill in the boxes that need to be filled!");
     }
+    answer = false; 
     if (lonlat == "") {
-        alert("Please click on the map to specify coordinates of the place!");
+       answer = confirm("Do you want to click on the map to insert coordinate?");
     }
-    
-    var data = {
-        user_id: parseInt(usrname),
+    var apartment = {
         address: address,
-        reach_place: reach,
-        max_people: parseInt(people),
-        description: description,
-        rules: rules,
-        num_beds: parseInt(beds),
-        num_baths: parseInt(baths),
-        num_bedrooms: parseInt(bedrooms),
-        images: image,
-        area: parseInt(area),
-        min_price: Number(price),
-        cost_per_person: Number(priceperson),
         free_from: new Date(from.toString()),
-        free_to: new Date(to.toString()),
-        lonlat: lonlat.toString(),
-        type_description: types.toString()
+        free_to: new Date(to.toString())
     }
-    Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', data);
+    var data = {
+            user_id: parseInt(usrname),
+            reach_place: reach,
+            max_people: parseInt(people),
+            description: description,
+            rules: rules,
+            num_beds: parseInt(beds),
+            num_baths: parseInt(baths),
+            num_bedrooms: parseInt(bedrooms),
+            images: image,
+            area: parseInt(area),
+            min_price: Number(price),
+            cost_per_person: Number(priceperson),
+            lonlat: lonlat.toString(),
+        type_description: types.toString(),
+        apartment: apartment
+    }
+    if (answer == false) {
+        await Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', data);
+        await location.reload();
+    }
+        
+   
+    
 }
 async function AddPlace() {
     times_clicked++;
@@ -129,7 +138,7 @@ async function AddPlace() {
         '<label for= "bedr" > <b>Maximum Number Of Bedrooms :</b></label > <input type="number" class="inpu" name="bedr" id="bedrooms" min="1" max="10"><br /><br />' +
         '<label for="desc"><b>Description :</b></label><textarea class="inpu" id = "description" rows = "3" cols = "80" name="desc" ></textarea ><br/><br/>' +
         '<label for="rule"><b>Rules :</b></label><textarea class="inpu" id = "rules" rows = "3" cols = "80" name="rule" ></textarea ><br/><br/>' +
-        '<label for="ima"><b>Image :</b></label><input type="text" class="inpu" placeholder="Enter Image Path" name="ima" id="imageflat"><br /><br />' +
+        '<label for="ima"><b>Image :</b></label><input type="file" class="inpu" placeholder="Enter Image Path" name="ima" id="imageflat" accept="image/*" ><br /><br />' +
         '<label for="start1"><b>From:</b></label><input type="date" id="startdate1" name="start1"><label for="end1"><b>To:</b></label><input type="date" id="enddate1" name="end1">' +
         '<button type="button" class="registerButton" onclick="SubmitPlace()">Submit Place</button>';
     if (times_clicked > 0) {
@@ -152,7 +161,7 @@ async function AddPlace() {
             zoom: 6
         })
     });
-    map.on('click', function (evt) {
+    map.on('click', await function (evt) {
         var coordinates = evt.coordinate;
         var answer = confirm('You have chosen place with long =  ' + coordinates[0] + ' and lat = ' + coordinates[1]);
         if (answer == true) {
@@ -162,6 +171,31 @@ async function AddPlace() {
         
     });
 }
+
+async function getMyModal(id) {
+    await Get_Info(WebSiteUrl + '/ApartmentsDetails/GetInfoApartments?value=' + id.toString());
+    await window.location.replace(WebSiteUrl + "/ApartmentsDetails/Index");
+}
+
+
+async function Get_Info(url, data) {
+    info = [];
+    await $.ajax(url, {
+        method: "GET",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        traditional: true,
+        async: true
+    }).done(function (result) {
+        info = result[0];
+        console.log(info.usrname);
+    }).fail(function (xhr) {
+
+    });
+    return info;
+}
+
 
 async function Create_table() {
     var table = $('#example1').DataTable({
@@ -173,9 +207,9 @@ async function Create_table() {
             { title: "FREE UP TO" }
         ]
     });
-    $('#example1 tbody').on('click', 'tr', function () {
+    $('#example1 tbody').on('click', 'tr',async function () {
         var data = table.row(this).data();
-        getMyModal(data[0]);
+        await getMyModal(data[0]);
     });   
 }
 

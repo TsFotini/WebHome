@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "ApartmentsDetails";
+}
+
+<h1>Apartment's Details</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="~/css/apartments.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+</head>
+<body>
+
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Apartments" asp-action="Index"><u>Return to Apartments Page</u></a>
+        </li>
+    </ul>
+    <br />
+
+    <label for="address"><b>Address :</b></label><input type="text" class="inpu" placeholder="Enter Address" name="address" id="detailsaddress" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.address">
+    <br /><br /><label for="reach"><b>How to reach place  : </b></label><br /><input type="text" class="inpu" placeholder="Enter busses, metro, other" name="reach" id="detailsreach1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.reach_place"><br /><br />
+    <div id="detailsmap" class="map"></div>
+    <label for="money"><b>Price :</b></label><input type="text" class="inpu" placeholder="Enter Price For Rent" name="money" id="detailsprice" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.min_price"><br /><br />
+    <label for="moneyperson"><b>Price per Person :</b></label><input type="text" class="inpu" placeholder="Enter Price per person" name="moneyperson" id="detailspriceperson" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.cost_per_person"><br /><br />
+    <label for="areaa"><b>Area :</b></label><input type="number" class="inpu" placeholder="Enter Area in cubic meters" name="areaa" id="detailsarea" min="1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.area"><br /><br />
+    <label for="typos"><b>Type of Apartment :</b></label><input type="text" class="inpu" placeholder="Enter Single Room,Double Room, Mansion or other" name="typos" id="detailstypes" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.type_description">
+    <label for="numpeople"><b>Maximum Number Of People :</b></label><input type="number" class="inpu" name="numpeople" id="detailspeople" min="1" max="10" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.max_people"><br /><br />
+    <label for="bd"> <b>Maximum Number Of Beds :</b></label> <input type="number" class="inpu" name="bd" id="detailsbeds" min="1" max="10" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.num_beds"><br /><br />
+    <label for="bathroom"> <b>Maximum Number Of Bathrooms :</b></label> <input type="number" class="inpu" name="bathroom" id="detailsbaths" min="1" max="10" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.num_baths"><br /><br />
+    <label for="bedr"> <b>Maximum Number Of Bedrooms :</b></label> <input type="number" class="inpu" name="bedr" id="detailsbedrooms" min="1" max="10" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.num_bedrooms"><br /><br />
+    <label for="desc"><b>Description :</b></label><textarea class="inpu" id="detailsdescription" rows="3" cols="80" name="desc"> @WebHome.Controllers.ApartmentsDetailsController.apartment.description</textarea><br /><br />
+    <label for="rule"><b>Rules :</b></label><textarea class="inpu" id="detailsrules" rows="3" cols="80" name="rule"> @WebHome.Controllers.ApartmentsDetailsController.apartment.rules</textarea><br /><br />
+    <label for="ima"><b>Image :</b></label><input type="text" class="inpu" placeholder="Enter Image Path" name="ima" id="detailsimageflat"><br /><br />
+    
+    <label for="start1"><b>From:</b></label><input type="text" id="detailsstartdate1" name="start1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.free_from ">
+    <label for="end1"><b>To:</b></label><input type="text" id="detailsenddate1" name="end1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.free_to ">
+    <label for="dstart1"><b>Change From:</b></label><input type="date" id="dstartdate1" name="dstart1"><label for="dend1"><b>To:</b></label><input type="date" id="denddate1" name="dend1">
+    <br /><br />
+    <button type="button" class="registerButton" onclick="UpdatePlace()">Update Place</button>
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var usrname = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+    </script>
+    <script src="~/js/apartmentsdetails.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

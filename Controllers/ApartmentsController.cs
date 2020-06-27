@@ -64,20 +64,20 @@ namespace WebHome.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertApartment([FromBody] Apartments values)
+        public IActionResult InsertApartment([FromBody] ApartmentsDetails values)
         {
             try
             {
                 var db = new DB();
-                var Query = @"INSERT INTO apartments (user_id, address, reach_place, free_from, free_to, max_people,min_price, cost_per_person,type_id,description,num_beds,num_baths,num_bedrooms,area,rules,images,lonlat, type_description) 
-                                VALUES (@m_user_id, @m_address, @m_reach_place, @m_free_from, @m_free_to, @m_max_people,@m_min_price, @m_cost_per_person,@m_type_id,@m_description,@m_num_beds,@m_num_baths,@m_num_bedrooms,@m_area,@m_rules,@m_images,@m_lonlat,@m_type_description)";
+                var Query = @"INSERT INTO apartments (user_id, address, reach_place, free_from, free_to, max_people,min_price, cost_per_person,description,num_beds,num_baths,num_bedrooms,area,rules,images,lonlat, type_description) 
+                                VALUES (@m_user_id, @m_address, @m_reach_place, @m_free_from, @m_free_to, @m_max_people,@m_min_price, @m_cost_per_person,@m_description,@m_num_beds,@m_num_baths,@m_num_bedrooms,@m_area,@m_rules,@m_images,@m_lonlat,@m_type_description)";
                 var cmd = new NpgsqlCommand();
                 cmd.CommandText = Query;
                 cmd.Parameters.AddWithValue("@m_user_id", values.user_id);
-                cmd.Parameters.AddWithValue("@m_address", values.address);
+                cmd.Parameters.AddWithValue("@m_address", values.apartment.address);
                 cmd.Parameters.AddWithValue("@m_reach_place", values.reach_place);
-                cmd.Parameters.AddWithValue("@m_free_from", values.free_from);
-                cmd.Parameters.AddWithValue("@m_free_to", values.free_to);
+                cmd.Parameters.AddWithValue("@m_free_from", values.apartment.free_from);
+                cmd.Parameters.AddWithValue("@m_free_to", values.apartment.free_to);
                 cmd.Parameters.AddWithValue("@m_max_people", values.max_people);
                 cmd.Parameters.AddWithValue("@m_min_price", values.min_price);
                 cmd.Parameters.AddWithValue("m_cost_per_person", values.cost_per_person);
@@ -98,7 +98,7 @@ namespace WebHome.Controllers
             {
 
             }
-            return Ok();
+            return View("/Views/Apartments.cshtml");
         }
     }
 }
