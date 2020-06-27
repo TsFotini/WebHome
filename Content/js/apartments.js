@@ -115,8 +115,8 @@ async function SubmitPlace() {
         apartment: apartment
     }
     if (answer == false) {
-        await Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', data);
-        await location.reload();
+        Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', data);
+        location.reload();
     }
         
    
