@@ -15,7 +15,7 @@ namespace WebHome.Controllers
 {
     public class LoginController : Controller
     {
-        public static Session user_session_created;
+        public static Session user_session_created = new Session(-1, -1, "", -1);
         public IActionResult Index()
         {
             return View("/Views/Login.cshtml");
@@ -117,10 +117,6 @@ namespace WebHome.Controllers
             {
 
             }
-        }
-        public IActionResult Logout()
-        {
-            return View("/Views/Register.cshtml");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace WebHome.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register([FromBody] Register values)
+        public IActionResult Register([FromBody] User values)
         {
             try
             {

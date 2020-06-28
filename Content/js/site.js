@@ -1,19 +1,16 @@
 ﻿//Popup Functions
 
-function LogIn() {
+async function LogIn() {
     var username = document.getElementById("usrname").value;
     var password = document.getElementById("pass").value;
     var data = { usrname: username, pass: password }
     Insert_Credentials_Request(WebSiteUrl + "/Login/Authenticate", data);
-    Get_Log_Request(WebSiteUrl + "/Login/Log")
+    Get_Log_Request(WebSiteUrl + "/Login/Log");
 }
-
-
-
 
 //register functions
 function Apply() {
-    var role;
+    
     var host = document.getElementById("host");
     var tenant = document.getElementById("tenant");
     if (host.checked && !(tenant.checked)) {
@@ -67,7 +64,7 @@ function check_credentials() {
     return value;
 } 
 
-
+//register
 function Submit() {
     if (check_credentials() != false) {
         var role = Apply();
@@ -90,7 +87,7 @@ function Insert_Credentials_Request(url, data) {
     $.ajax(url, {
         method: "POST",
         dataType: "json",
-        async: false,
+        async: false, //
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data)
     }).done(function (result) {
@@ -122,8 +119,8 @@ function Get_Usernames_Request(url, data) {
 }
 
 
-function Insert_Data_Register(url, data) {
-    $.ajax(url, {
+async function Insert_Data_Register(url, data) {
+    await $.ajax(url, {
         method: "POST",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
@@ -160,6 +157,38 @@ async function Get_Log_Request(url, data) {
     });
 }
 
+//After login
+function AccountLogIn(is_logged_in) {
+    if (is_logged_in == 1) {
+        var str = '<ul class="navbar-nav flex-grow-1">' +
+            '<li class="nav-item">' +
+            '<button class="userBtn" onclick="RelocateSettings()">' + usrname + '</button>' +
+            '</li>' +
+            '</ul>'
+        $('#userlogged').append(str);
+    }
 
+}
+
+async function Get_User_Request(url, data) {
+    await $.ajax(url, {
+        method: "GET",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        traditional: true
+    }).done(function (valid) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+AccountLogIn(log);
+
+async function RelocateSettings() {
+    await Get_User_Request(WebSiteUrl + "/AccountSettings/GetCurrUser?value=" + userid.toString());
+    await window.location.replace(WebSiteUrl + '/AccountSettings/Index');
+}
 
 

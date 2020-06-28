@@ -11,8 +11,8 @@
     })
 });
 
-async function Insert_Request_Details(url, data) {
-    await $.ajax(url, {
+function Insert_Request_Details(url, data) {
+    $.ajax(url, {
         method: "PUT",
         dataType: "json",
         async: true,
@@ -78,7 +78,7 @@ async function UpdatePlace() {
         apartment: apartment,
         lonlat: lonlat.toString()
     }
-    await Insert_Request_Details(WebSiteUrl + '/ApartmentsDetails/UpdatePlace', data);
+    Insert_Request_Details(WebSiteUrl + '/ApartmentsDetails/UpdatePlace', data);
 }
 
 async function Delete_Request_Details(url, data) {

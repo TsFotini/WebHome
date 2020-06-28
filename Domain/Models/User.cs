@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebHome.Domain.IServices;
 
 namespace WebHome.Domain.Models
 {
     public class User
     {
         public int user_id { get; set; }
+        public string pass { get; set; }
+        public int role_id { get; set; }
         public string role { get; set; }
         public string usrname { get; set; }
         public string email { get; set; }
@@ -19,5 +22,14 @@ namespace WebHome.Domain.Models
         public DateTime last_login { get; set; }
         public int accepted { get; set; }
 
+    }
+
+    public class UserModel
+    {
+        public User user { get; set; }
+        public UserModel(IUser Iuser, int id)
+        {
+            user = Iuser.GetUser(id);
+        }
     }
 }
