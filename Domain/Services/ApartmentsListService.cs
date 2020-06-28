@@ -72,5 +72,26 @@ namespace WebHome.Domain.Services
             }
             return data;
         }
+        
+        public int DeleteApartment(int value)
+        {
+            try
+            {
+                var db = new DB();
+                var Query = @"DELETE FROM apartments WHERE id = @m_id";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_id", value);
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+                db.close();
+                
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return value;
+        }
     }
 }

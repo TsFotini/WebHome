@@ -20,6 +20,7 @@ namespace WebHome.Controllers
         {
             return View("/Views/Login.cshtml");
         }
+
         [HttpPost]
         public IActionResult Authenticate([FromBody]Login values)
         {

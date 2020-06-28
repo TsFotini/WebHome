@@ -9,5 +9,6 @@ namespace WebHome.Domain.IServices
     public interface IApartmentsList
     {
         public List<ApartmentsDetails> GetApartments();
+        public int DeleteApartment(int value);
     }
 }

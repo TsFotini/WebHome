@@ -30,7 +30,7 @@
     </ul>
     <br />
 
-    <label for="address"><b>Address :</b></label><input type="text" class="inpu" placeholder="Enter Address" name="address" id="detailsaddress" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.address">
+    <label for="address"><b>Address :</b></label><input type="text" class="inpu" placeholder="Enter Address" name="address" id="detailsaddress" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.address" onchange="ChangedAddress()">
     <br /><br /><label for="reach"><b>How to reach place  : </b></label><br /><input type="text" class="inpu" placeholder="Enter busses, metro, other" name="reach" id="detailsreach1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.reach_place"><br /><br />
     <div id="detailsmap" class="map"></div>
     <label for="money"><b>Price :</b></label><input type="text" class="inpu" placeholder="Enter Price For Rent" name="money" id="detailsprice" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.min_price"><br /><br />
@@ -44,15 +44,18 @@
     <label for="desc"><b>Description :</b></label><textarea class="inpu" id="detailsdescription" rows="3" cols="80" name="desc"> @WebHome.Controllers.ApartmentsDetailsController.apartment.description</textarea><br /><br />
     <label for="rule"><b>Rules :</b></label><textarea class="inpu" id="detailsrules" rows="3" cols="80" name="rule"> @WebHome.Controllers.ApartmentsDetailsController.apartment.rules</textarea><br /><br />
     <label for="ima"><b>Image :</b></label><input type="text" class="inpu" placeholder="Enter Image Path" name="ima" id="detailsimageflat"><br /><br />
-    
+
     <label for="start1"><b>From:</b></label><input type="text" id="detailsstartdate1" name="start1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.free_from ">
     <label for="end1"><b>To:</b></label><input type="text" id="detailsenddate1" name="end1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.free_to ">
     <label for="dstart1"><b>Change From:</b></label><input type="date" id="dstartdate1" name="dstart1"><label for="dend1"><b>To:</b></label><input type="date" id="denddate1" name="dend1">
     <br /><br />
     <button type="button" class="registerButton" onclick="UpdatePlace()">Update Place</button>
+    <br/>
+    <button type="button" class="deleteButton" onclick="DeletePlace()">Delete Place</button>
     <script type="text/javascript">
         var WebSiteUrl = "@Configs.WebSiteUrl";
-        var usrname = "@WebHome.Controllers.LoginController.user_session_created.user_id"; 
+        var usrname = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+        var current_apartment_id = "@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.id ";
     </script>
     <script src="~/js/apartmentsdetails.js" asp-append-version="true"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

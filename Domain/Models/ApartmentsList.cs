@@ -19,5 +19,15 @@ namespace WebHome.Domain.Models
             ApartmentsDetails result = data.FirstOrDefault(r => r.apartment.id == this_id);
             return result;
         }
+
+        public List<ApartmentsDetails> DeleteApartment(int ID,IApartmentsList IApartment)
+        {
+            int id = IApartment.DeleteApartment(ID);
+            var item = data.SingleOrDefault(x => x.apartment.id == id);
+            if (item != null)
+                data.Remove(item);
+            return data;
+
+        }
     }
 }
