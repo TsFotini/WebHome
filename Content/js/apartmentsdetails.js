@@ -81,8 +81,8 @@ async function UpdatePlace() {
     Insert_Request_Details(WebSiteUrl + '/ApartmentsDetails/UpdatePlace', data);
 }
 
-async function Delete_Request_Details(url, data) {
-    await $.ajax(url, {
+function Delete_Request_Details(url, data) {
+    $.ajax(url, {
         method: "DELETE",
         dataType: "json",
         async: true,
