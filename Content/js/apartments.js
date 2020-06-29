@@ -1,4 +1,4 @@
-﻿console.log(usrname);
+﻿console.log(usrid);
 data1 = new Array();
 
 
@@ -98,7 +98,7 @@ async function SubmitPlace() {
         free_to: new Date(to.toString())
     }
     var data = {
-            user_id: parseInt(usrname),
+            user_id: parseInt(usrid),
             reach_place: reach,
             max_people: parseInt(people),
             description: description,
@@ -106,16 +106,16 @@ async function SubmitPlace() {
             num_beds: parseInt(beds),
             num_baths: parseInt(baths),
             num_bedrooms: parseInt(bedrooms),
-            images: image,
             area: parseInt(area),
             min_price: Number(price),
             cost_per_person: Number(priceperson),
             lonlat: lonlat.toString(),
-        type_description: types.toString(),
-        apartment: apartment
+            type_description: types.toString(),
+        apartment: apartment,
+        images: image.toString()
     }
     if (answer == false) {
-        Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', data);
+        Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', JSON.stringify(data));
         location.reload();
     }
         
@@ -138,7 +138,7 @@ async function AddPlace() {
         '<label for= "bedr" > <b>Maximum Number Of Bedrooms :</b></label > <input type="number" class="inpu" name="bedr" id="bedrooms" min="1" max="10"><br /><br />' +
         '<label for="desc"><b>Description :</b></label><textarea class="inpu" id = "description" rows = "3" cols = "80" name="desc" ></textarea ><br/><br/>' +
         '<label for="rule"><b>Rules :</b></label><textarea class="inpu" id = "rules" rows = "3" cols = "80" name="rule" ></textarea ><br/><br/>' +
-        '<label for="ima"><b>Image :</b></label><input type="file" class="inpu" placeholder="Enter Image Path" name="ima" id="imageflat" accept="image/*" ><br /><br />' +
+        '<label for="ima"><b>Image :</b></label><input type="text" class="inpu" placeholder="Enter Image Path" name="ima" id="imageflat"  ><br /><br />' +
         '<label for="start1"><b>From:</b></label><input type="date" id="startdate1" name="start1"><label for="end1"><b>To:</b></label><input type="date" id="enddate1" name="end1">' +
         '<button type="button" class="registerButton" onclick="SubmitPlace()">Submit Place</button>';
     if (times_clicked > 0) {
@@ -199,7 +199,7 @@ async function Get_Info(url, data) {
 
 async function Create_table() {
     var table = $('#example1').DataTable({
-        data: await Get_Data(WebSiteUrl + '/Apartments/GetApartments?value=' + usrname.toString()),
+        data: await Get_Data(WebSiteUrl + '/Apartments/GetApartments?value=' + usrid.toString()),
         columns: [
             { title: "ID" },
             { title: "ADDRESS" },

@@ -52,8 +52,8 @@ async function UpdatePlace() {
     var description = document.getElementById('detailsdescription').value;
     var rules = document.getElementById('detailsrules').value;
     var image = document.getElementById('detailsimageflat').value;
-    var to = document.getElementById('detailsenddate1').value;
-    var from = document.getElementById('detailsstartdate1').value;
+    var to = document.getElementById('denddate1').value;
+    var from = document.getElementById('dstartdate1').value;
     var types = document.getElementById('detailstypes').value;
     var apartment = {
         id: parseInt(current_apartment_id),

@@ -64,10 +64,11 @@ namespace WebHome.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertApartment([FromBody] ApartmentsDetails values)
+        public IActionResult InsertApartment([FromBody] string value)
         {
             try
             {
+                ApartmentsDetails values = JsonConvert.DeserializeObject<ApartmentsDetails>(value);
                 var db = new DB();
                 var Query = @"INSERT INTO apartments (user_id, address, reach_place, free_from, free_to, max_people,min_price, cost_per_person,description,num_beds,num_baths,num_bedrooms,area,rules,images,lonlat, type_description) 
                                 VALUES (@m_user_id, @m_address, @m_reach_place, @m_free_from, @m_free_to, @m_max_people,@m_min_price, @m_cost_per_person,@m_description,@m_num_beds,@m_num_baths,@m_num_bedrooms,@m_area,@m_rules,@m_images,@m_lonlat,@m_type_description)";
