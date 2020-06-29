@@ -8,9 +8,8 @@ using WebHome.Domain.Models;
 
 namespace WebHome.Domain.Services
 {
-    public class UserService : IUser
+    public class UserService : IUsers
     {
-        public  User user_details;
 
         public User GetUser(int id)
         {
@@ -55,6 +54,53 @@ namespace WebHome.Domain.Services
 
             }
             return user;
+        }
+
+        public int UsernameExists(string username)
+        {
+            var result = true;
+            var res = 1;
+            try
+            {
+                var db = new DB();
+                var Query = @"select exists(select 1 from register where usrname = @m_usrname)";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_usrname", username);
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+
+                NpgsqlDataReader DataReader;
+
+                DataReader = cmd.ExecuteReader();
+
+                cmd.Dispose();
+                if (DataReader.HasRows)
+                {
+                    while (DataReader.Read())
+                    {
+                        result = Convert.ToBoolean(DataReader.GetValue(0));
+                    }
+
+                }
+                DataReader.Close();
+                DataReader.Dispose();
+                if (result == true)
+                {
+                    res = 1;
+                }
+                else
+                {
+                    res = 0;
+                }
+                db.close();
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return res;
         }
 
 

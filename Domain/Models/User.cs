@@ -27,7 +27,7 @@ namespace WebHome.Domain.Models
     public class UserModel
     {
         public User user { get; set; }
-        public UserModel(IUser Iuser, int id)
+        public UserModel(IUsers Iuser, int id)
         {
             user = Iuser.GetUser(id);
         }

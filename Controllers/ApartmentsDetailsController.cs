@@ -39,10 +39,11 @@ namespace WebHome.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdatePlace([FromBody] ApartmentsDetails values)
+        public IActionResult UpdatePlace([FromBody] string value)
         {
             try
             {
+                ApartmentsDetails values = JsonConvert.DeserializeObject<ApartmentsDetails>(value);
                 var db = new DB();
                 var Query = @"UPDATE apartments SET address = @m_address, reach_place = @m_reach_place, free_from = @m_free_from, free_to = @m_free_to, " +
                     "max_people = @m_max_people, min_price= @m_min_price, cost_per_person= @m_cost_per_person, description= @m_description, " +

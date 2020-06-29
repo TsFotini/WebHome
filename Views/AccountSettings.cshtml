@@ -8,7 +8,7 @@
 
 <label for="uname"><b>Username :</b></label>
 <br />
-<input type="text" class="inpu" placeholder="Enter Username" name="uname" id="userusrname1" value="@WebHome.Controllers.AccountSettingsController.current_user.usrname" required>
+<input type="text" class="inpu" placeholder="Enter Username" name="uname" id="userusrname1" value="@WebHome.Controllers.AccountSettingsController.current_user.usrname" onchange="UpdateUserName()"  required>
 <br />
 <br />
 
@@ -20,37 +20,37 @@
 
 <label for="pswver"><b>Verify Password : </b></label>
 <br />
-<input type="password" class="inpu" placeholder="Password Verification" name="pswver" id="userpassver" required>
+<input type="password" class="inpu" placeholder="Password Verification" name="pswver" id="userpassver"  onchange="passes()" required>
 <br />
 <br />
 
 <label for="email"><b>e-mail: </b></label>
 <br />
-<input type="email" class="inpu" placeholder="Enter e-mail" name="email" id="usermail" value="@WebHome.Controllers.AccountSettingsController.current_user.email" required>
+<input type="email" class="inpu" placeholder="Enter e-mail" name="email" id="usermail" value="@WebHome.Controllers.AccountSettingsController.current_user.email"  onchange="passmail()" required>
 <br />
 <br />
 
 <label for="Name"><b>Name: </b></label>
 <br />
-<input type="text" class="inpu" placeholder="Enter your Name" name="Name" id="username" value="@WebHome.Controllers.AccountSettingsController.current_user.name">
+<input type="text" class="inpu" placeholder="Enter your Name" name="Name" id="username" value="@WebHome.Controllers.AccountSettingsController.current_user.name" onchange="passname()">
 <br />
 <br />
 
 <label for="Surname"><b>Surname: </b></label>
 <br />
-<input type="text" class="inpu" placeholder="Enter your Surname" name="Surname" id="usersurname" value="@WebHome.Controllers.AccountSettingsController.current_user.surname">
+<input type="text" class="inpu" placeholder="Enter your Surname" name="Surname" id="usersurname" value="@WebHome.Controllers.AccountSettingsController.current_user.surname" onchange="passsurname()">
 <br />
 <br />
 
 <label for="mob"><b>Phone Number: </b></label>
 <br />
-<input type="text" class="inpu" placeholder="Enter your Mobile Phone" name="mob" id="usermobile" value="@WebHome.Controllers.AccountSettingsController.current_user.phone_number">
+<input type="text" class="inpu" placeholder="Enter your Mobile Phone" name="mob" id="usermobile" value="@WebHome.Controllers.AccountSettingsController.current_user.phone_number" onchange="passphone()">
 <br />
 <br />
 
 <label for="pht"><b>Photo: </b></label>
 <br />
-<input type="text" class="inpu" placeholder="Upload Photo" name="pht" id="userphoto" value="@WebHome.Controllers.AccountSettingsController.current_user.images">
+<input type="text" class="inpu" placeholder="Upload Photo" name="pht" id="userphoto" value="@WebHome.Controllers.AccountSettingsController.current_user.images" onchange="passphoto()">
 <br />
 <br />
 

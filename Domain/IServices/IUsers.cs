@@ -6,8 +6,9 @@ using WebHome.Domain.Models;
 
 namespace WebHome.Domain.IServices
 {
-    public interface IUser
+    public interface IUsers
     {
         public User GetUser(int id);
+        public int UsernameExists(string username);
     }
 }

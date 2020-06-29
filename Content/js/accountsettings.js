@@ -2,6 +2,7 @@
     var role;
     var host = document.getElementById("userhost");
     var tenant = document.getElementById("usertenant");
+    role = -1;
     if (host.checked && !(tenant.checked)) {
         role = 1;
     }
@@ -12,7 +13,10 @@
         role = 3;
     }
     console.log(role);
-    return role;
+    if (role != -1) {
+        Put_Data_Username(WebSiteUrl + '/AccountSettings/UpdateRole', role.toString());
+    }
+    
 
 }
 
@@ -38,16 +42,52 @@ function Get_Usernames_Request(url, data) {
 }
 
 function UserSubmit() {
-    var role = UserApply();
+    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdateAccount');
+}
+
+function UpdateUserName() {
     var username = document.getElementById("userusrname1").value;
-    var password = document.getElementById("userpass1").value;
+    Put_Data_Username(WebSiteUrl + '/AccountSettings/UpdateUsername', username);
+
+}
+
+function passes() {
+    password1 = document.getElementById("userpass1").value;
+    password2 = document.getElementById("userpassver").value;
+    if (password1 != password2) {
+        alert("Passwords do not match try again!");
+        document.getElementById("userpass1").value = "";
+        document.getElementById("userpassver").value = "";
+    }
+    else {
+        Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdatePass', password1);
+    }
+}
+
+function passmail() {
     var email = document.getElementById("usermail").value;
+    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdateMail', email);
+}
+
+function passname() {
     var name = document.getElementById("username").value;
-    var surname = document.getElementById("usersurname").value;
-    var mobile = document.getElementById("usermobile").value;
+    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdateName', name);
+}
+
+function passphone() {
+    var phone = document.getElementById("usermobile").value;
+    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdatePhone', phone);
+}
+
+
+function passsurname() {
+    var sname = document.getElementById("usersurname").value;
+    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdateSurname', sname);
+}
+
+function passphoto() {
     var photo = document.getElementById("userphoto").value;
-    var data = { usrname: username, pass: password, email: email, name: name, surname: surname, phone_number: mobile, images: photo, role_id: role }
-    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdateAccount', data);
+    Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdatePhoto', photo);
 }
 
 async function Put_Data_Register(url, data) {
@@ -58,6 +98,22 @@ async function Put_Data_Register(url, data) {
         data: JSON.stringify(data)
     }).done(function (result) {
 
+    }).fail(function (xhr) {
+
+    });
+}
+
+async function Put_Data_Username(url, data) {
+    await $.ajax(url, {
+        method: "PUT",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+        if (result == 0) {
+            alert("Please change username! This is currently used by another user!");
+            document.getElementById("userusrname1").value = "";
+        }
     }).fail(function (xhr) {
 
     });

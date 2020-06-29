@@ -55,6 +55,10 @@ async function UpdatePlace() {
     var to = document.getElementById('denddate1').value;
     var from = document.getElementById('dstartdate1').value;
     var types = document.getElementById('detailstypes').value;
+    if (from == "" || to == "") {
+        from = document.getElementById('detailsstartdate1').value;
+        to = document.getElementById('detailsenddate1').value;
+    }
     var apartment = {
         id: parseInt(current_apartment_id),
         address: address,
@@ -62,7 +66,7 @@ async function UpdatePlace() {
         free_to: new Date(to.toString())
     }
     var data = {
-        user_id: parseInt(usrname),
+        user_id: parseInt(curruserid),
         reach_place: reach,
         max_people: parseInt(people),
         description: description,
@@ -78,7 +82,7 @@ async function UpdatePlace() {
         apartment: apartment,
         lonlat: lonlat.toString()
     }
-    Insert_Request_Details(WebSiteUrl + '/ApartmentsDetails/UpdatePlace', data);
+    Insert_Request_Details(WebSiteUrl + '/ApartmentsDetails/UpdatePlace', JSON.stringify(data));
 }
 
 function Delete_Request_Details(url, data) {
