@@ -86,6 +86,47 @@ namespace WebHome.Controllers
             return jsonObject;
         }
 
+        [HttpGet]
+        public string GetPlaces()
+        {
+            string jsonObject = "";
+            try
+            {
+                var data = new List<string>();
+
+                var db = new DB();
+                var Query = @"select address from apartments";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Connection = db.npgsqlConnection;
+                NpgsqlDataReader DataReader;
+
+                DataReader = cmd.ExecuteReader();
+
+                cmd.Dispose();
+                if (DataReader.HasRows)
+                {
+                    while (DataReader.Read())
+                    {
+                        data.Add(DataReader.GetValue(0).ToString());
+                    }
+
+
+                }
+                DataReader.Close();
+                DataReader.Dispose();
+                jsonObject = JsonConvert.SerializeObject(data);
+                db.close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return jsonObject;
+        }
+
+
 
 
     }
