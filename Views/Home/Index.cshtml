@@ -6,23 +6,25 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="~/css/index.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
-    <style>
-        .map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+    
     <div class="text-center">
-        <h1 class="display-4">Rent a Home Now...</h1>
+
+        <h1 class="text-center">Rent a Home Now...</h1>
         <br /><br />
+
         <label for="ap">Choose Apartment Type:</label>
         <input name="ap" list="apartments" />
-        <datalist id="apartments" style="width:100%"></datalist>
+        <datalist id="apartments" style="width:30%"></datalist>
         <br /><br />
+        <label for="place">Choose Place Type:</label>
+        <input name="type" list="places" />
+        <datalist id="places" style="width:30%"></datalist>
+        <br /><br />
+
+
         <div id="clearfix">
             <label for="start">From:</label>
             <input type="date" id="startdate" name="start">
@@ -33,16 +35,24 @@
         <label for="people">Enter number of people:</label>
         <input type="number" id="quantity" name="people" min="1" max="10">
         <br /><br />
-        <label for="place">Choose Place Type:</label>
-        <input name="type" list="places" />
-        <datalist id="places" style="width:100%"></datalist>
+        <br /><br />
+        <div class="w3-center">
+            <div class="w3-content w3-section" style="max-width:500px">
+                <img class="mySlides" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTY7aHPGfgt9MTzT31MM4GCEmiLVlN0Lg3DlA&usqp=CAU" style="width:100%">
+                <img class="mySlides" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQwjGCQ-hPp7N5SbhQcmljtuREBfwzOipHGuw&usqp=CAU" style="width:100%">
+                <img class="mySlides" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQBaLRmeC1VlZB3iDe_jMXIJP9ROsk0lJPkeQ&usqp=CAU" style="width:100%">
+                <img class="mySlides" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS70vTxG63rID8ozSBujKOxjqiV2CXTCqbFVw&usqp=CAU" style="width:100%">
+            </div>
+
+        </div> 
+
     </div>
-    <script type="text/javascript">
+        <script type="text/javascript">
             var WebSiteUrl = "@Configs.WebSiteUrl";
-    </script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/index.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        </script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/index.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

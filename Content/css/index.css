@@ -1,15 +1,19 @@
 ﻿input[list] {
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 20%;
     padding: 10px 10px 10px 10px;
-    font: 12px Arial, Helvetica, sans-serif;
 }
 
 input[list]:focus {
-    width: 100%;
+    width: 40%;
 }
 
 .clearfix {
     display: inline-block;
 }
+
+.mySlides {
+    display: none
+}
+
