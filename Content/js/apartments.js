@@ -170,7 +170,19 @@ async function AddPlace() {
         }
         
     });
+    $("#enddate1").change(function () {
+        var startDate = document.getElementById("startdate1").value;
+        var endDate = document.getElementById("enddate1").value;
+
+        if ((Date.parse(endDate) <= Date.parse(startDate))) {
+            alert("End date should be greater than Start date");
+            document.getElementById("enddate1").value = "";
+        }
+    });
 }
+
+
+
 
 async function getMyModal(id) {
     await Get_Info(WebSiteUrl + '/ApartmentsDetails/GetInfoApartments?value=' + id.toString());

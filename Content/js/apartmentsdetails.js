@@ -39,6 +39,16 @@ async function ChangedAddress() {
     });
 }
 
+$("#denddate1").change(function () {
+    var startDate = document.getElementById("dstartdate1").value;
+    var endDate = document.getElementById("denddate1").value;
+
+    if ((Date.parse(endDate) <= Date.parse(startDate))) {
+        alert("End date should be greater than Start date");
+        document.getElementById("denddate").value = "";
+    }
+});
+
 async function UpdatePlace() {
     var address = document.getElementById('detailsaddress').value;
     var reach = document.getElementById('detailsreach1').value;
