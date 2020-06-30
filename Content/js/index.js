@@ -72,3 +72,34 @@ function carousel() {
     x[myIndex - 1].style.display = "block";
     setTimeout(carousel, 2000); // Change image every 2 seconds
 }
+
+async function Insert_Request_Infos(url, data) {
+    await $.ajax(url, {
+        method: "POST",
+        dataType: "json",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+async function catchInfo() {
+    apartmentsType = document.getElementById('aps').value;
+    place = document.getElementById('place').value;
+    startdate = document.getElementById('startdate').value;
+    enddate = document.getElementById('enddate').value;
+    quantity = document.getElementById('quantity').value;
+    if (quantity == "") {
+        alert("Please fill in number of people!");
+    }
+    else if (startdate == "" || enddate == "") {
+        alert("Please fill in dates!");
+    }
+    data = { type: apartmentsType, address: place, num_people: parseInt(quantity), from: new Date(startdate.toString()), to: new Date(enddate.toString()) }
+    await Insert_Request_Infos("/ApartmentsVisitor/CatchInfos", JSON.stringify(data));
+    await window.location.replace(WebSiteUrl + "/ApartmentsVisitor/Index");
+}

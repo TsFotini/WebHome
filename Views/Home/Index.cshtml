@@ -16,11 +16,11 @@
         <br /><br />
 
         <label for="ap">Choose Apartment Type:</label>
-        <input name="ap" list="apartments" />
+        <input name="ap" list="apartments" id="aps" />
         <datalist id="apartments" style="width:30%"></datalist>
         <br /><br />
         <label for="place">Choose Place Type:</label>
-        <input name="type" list="places" />
+        <input name="type" list="places" id="place" />
         <datalist id="places" style="width:30%"></datalist>
         <br /><br />
 
@@ -34,6 +34,7 @@
         <br /><br />
         <label for="people">Enter number of people:</label>
         <input type="number" id="quantity" name="people" min="1" max="10">
+        <button class="acceptButton" onclick="catchInfo()">Search</button>
         <br /><br />
         <br /><br />
         <div class="w3-center">

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "ApartmentsVisitor";
+}
+
+<h1>Apartments</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/apartmentsvisitor.css" />
+</head>
+<body>
+    <br />
+    <table id="exampleApartments" class="display" width="100%">
+    </table>
+    <br /><br />
+    <script type="text/javascript">
+            var WebSiteUrl = "@Configs.WebSiteUrl";
+    </script>
+    <script src="~/js/apartmentsvisitor.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

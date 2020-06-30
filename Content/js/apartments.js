@@ -138,7 +138,7 @@ async function AddPlace() {
         '<label for= "bedr" > <b>Maximum Number Of Bedrooms :</b></label > <input type="number" class="inpu" name="bedr" id="bedrooms" min="1" max="10"><br /><br />' +
         '<label for="desc"><b>Description :</b></label><textarea class="inpu" id = "description" rows = "3" cols = "80" name="desc" ></textarea ><br/><br/>' +
         '<label for="rule"><b>Rules :</b></label><textarea class="inpu" id = "rules" rows = "3" cols = "80" name="rule" ></textarea ><br/><br/>' +
-        '<label for="ima"><b>Image :</b></label><input type="file" class="inpu" placeholder="Enter Image Path" name="ima" id="imageflat"  ><br /><br />' +
+        '<label for="ima"><b>Image :</b></label><input type="text" class="inpu" placeholder="Enter Image Path" name="ima" id="imageflat"  ><br /><br />' +
         '<label for="start1"><b>From:</b></label><input type="date" id="startdate1" name="start1"><label for="end1"><b>To:</b></label><input type="date" id="enddate1" name="end1">' +
         '<button type="button" class="registerButton" onclick="SubmitPlace()">Submit Place</button>';
     if (times_clicked > 0) {
