@@ -14,6 +14,7 @@ namespace WebHome.Controllers
     public class ApartmentsVisitorController : Controller
     {
         public static ApartmentsVisitor apartments_info_model;
+        public static List<Rate> rates;
         public IActionResult Index()
         {
             return View("/Views/ApartmentsVisitor.cshtml");
@@ -35,11 +36,24 @@ namespace WebHome.Controllers
                 var service_item = new RatesService();
                 var rates_list = new RatesList(service_item);
                 data = rates_list.rates;
+                rates = data;
             }
             catch(Exception ex)
             {
 
             }
+            var str = JsonConvert.SerializeObject(data);
+            return str;
+        }
+
+        [HttpGet]
+        public string GetFilteredApartments()
+        {
+
+            var data = new List<Rate>();
+            var service_item = new RatesService();
+            rates = service_item.rates();
+            data = service_item.filter_list_visitor(rates,apartments_info_model);
             var str = JsonConvert.SerializeObject(data);
             return str;
         }
