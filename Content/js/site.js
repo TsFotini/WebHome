@@ -143,6 +143,7 @@ async function Get_Log_Request(url, data) {
         if (valid.valid == 1) {
             alert("Admin is in");
             window.location.replace(WebSiteUrl + "/Admin/Index");
+           
         }
         else if (valid.valid == 2) {
             alert("Host is in");
@@ -158,16 +159,32 @@ async function Get_Log_Request(url, data) {
 }
 
 //After login
-function AccountLogIn(is_logged_in) {
+function AccountLogIn(is_logged_in,role_id) {
     if (is_logged_in == 1) {
         var str = '<ul class="navbar-nav flex-grow-1">' +
             '<li class="nav-item">' +
             '<button class="userBtn" onclick="RelocateSettings()">' + usrname + '</button>' +
             '</li>' +
-            '</ul>'
+            '</ul>';
         $('#userlogged').append(str);
-    }
+        if (role_id == 0) {
+            str = '<ul class="navbar-nav flex-grow-1">' +
+                '<li class="nav-item">' +
+                '<button class="pageBtn" onclick="RelocateAdmin()">Admin</button>' +
+                '</li>' +
+                '</ul>';
+            $('#pageuser').append(str);
+        }
+        else if (role_id == 1) {
+            str = '<ul class="navbar-nav flex-grow-1">' +
+                '<li class="nav-item">' +
+                '<button class="pageBtn" onclick="RelocateHost()">Host Page</button>' +
+                '</li>' +
+                '</ul>';
+            $('#pageuser').append(str);
+        }
 
+    }
 }
 
 async function Get_User_Request(url, data) {
@@ -184,7 +201,15 @@ async function Get_User_Request(url, data) {
     });
 }
 
-AccountLogIn(log);
+AccountLogIn(log, role_user);
+
+async function RelocateAdmin() {
+    await window.location.replace(WebSiteUrl + '/Admin/Index');
+}
+
+async function RelocateHost() {
+    await window.location.replace(WebSiteUrl + '/Apartments/Index');
+}
 
 async function RelocateSettings() {
     await Get_User_Request(WebSiteUrl + "/AccountSettings/GetCurrUser?value=" + userid.toString());

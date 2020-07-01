@@ -12,13 +12,13 @@ async function Get_Data_Aprtments_Visitors(url, data) {
 
         for (var i = 0; i < result.length; i++) {
             temp = [];
-            temp.push(result[i].apartment.apartment.id.toString());
+            temp.push(parseInt(result[i].apartment.apartment.id));
             temp.push(result[i].apartment.images.toString());
-            temp.push((result[i].apartment.min_price.toString()) + ' Euros');
+            temp.push(Number(result[i].apartment.min_price));
             temp.push(result[i].apartment.type_description.toString());
-            temp.push(result[i].apartment.num_beds.toString());
+            temp.push(parseInt(result[i].apartment.num_beds));
             temp.push(result[i].message_rate.toString());
-            temp.push(result[i].rate.toString());
+            temp.push(parseInt(result[i].rate));
             data2.push(temp);
         }
 
@@ -33,6 +33,7 @@ async function Create_table() {
 
     var table = $('#exampleApartments').DataTable({
         data: await Get_Data_Aprtments_Visitors(WebSiteUrl + '/ApartmentsVisitor/GetFilteredApartments'),
+        "order": [[2, "desc"]],
         columns: [
             { title: "ID" },
             { title: "IMAGE" },

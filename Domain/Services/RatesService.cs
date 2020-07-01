@@ -76,8 +76,13 @@ namespace WebHome.Domain.Services
 
         public List<Rate> filter_list_visitor(List<Rate> rates, ApartmentsVisitor a)
         {
-            var filteredlist = rates.Where(p => p.apartment.type_description == a.type || p.apartment.apartment.address == a.address || p.apartment.max_people == a.num_people || 
+            var filteredlist = rates;
+            if(a != null) {
+                filteredlist = rates.Where(p => p.apartment.type_description == a.type || p.apartment.apartment.address == a.address || p.apartment.max_people == a.num_people ||
                                                     (p.apartment.apartment.free_from >= a.from && p.apartment.apartment.free_to <= a.to)).ToList();
+                filteredlist = filteredlist.OrderByDescending(a => a.apartment.min_price).ToList();
+            }
+            
             return filteredlist;
         }
     }

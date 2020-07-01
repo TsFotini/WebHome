@@ -87,6 +87,14 @@ body {
     background-color: greenyellow;
 }
 
+.pageBtn {
+    position: relative;
+    border: none;
+    color: black;
+    cursor: pointer;
+    background-color: lightblue;
+}
+
 .popup {
     display: none; /* Hidden by default */
     position: fixed;

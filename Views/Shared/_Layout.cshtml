@@ -17,18 +17,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1" id="onhome">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                       
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ApartmentsVisitor" asp-action="Index">Apartments</a>
+                        </li>
                     </ul>
                 </div>
-
+                <div id="pageuser"></div>
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Account</a>
@@ -52,6 +53,7 @@
         var log = @WebHome.Controllers.LoginController.user_session_created.isloggedIn;
         var usrname = "@WebHome.Controllers.LoginController.user_session_created.usrname";
         var userid = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+        var role_user = @WebHome.Controllers.LoginController.user_session_created.role_id;
     </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
