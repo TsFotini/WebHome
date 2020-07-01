@@ -183,22 +183,29 @@ function AccountLogIn(is_logged_in,role_id) {
                 '</ul>';
             $('#pageuser').append(str);
         }
-
+        var str_logout = '<ul class="navbar-nav flex-grow-1">' +
+            '<li class="nav-item">' +
+            '<button class="logoutBtn" onclick="LogOut()"> Logout ' + usrname + '</button>' +
+            '</li>' +
+            '</ul>';
+        $('#logout').append(str_logout);
     }
 }
 
-async function Get_User_Request(url, data) {
-    await $.ajax(url, {
+function Get_User_Request(url, data) {
+    
+    $.ajax(url, {
         method: "GET",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data),
         traditional: true
     }).done(function (valid) {
-
+        
     }).fail(function (xhr) {
 
     });
+   
 }
 
 AccountLogIn(log, role_user);
@@ -209,6 +216,11 @@ async function RelocateAdmin() {
 
 async function RelocateHost() {
     await window.location.replace(WebSiteUrl + '/Apartments/Index');
+}
+
+function LogOut() {
+    Get_User_Request(WebSiteUrl + '/Login/Logout');
+    window.location.replace(WebSiteUrl + '/Home/Index');
 }
 
 async function RelocateSettings() {

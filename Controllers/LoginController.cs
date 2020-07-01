@@ -118,5 +118,13 @@ namespace WebHome.Controllers
 
             }
         }
+
+        [HttpGet]
+        public string Logout()
+        {
+            var str = "bye";
+            user_session_created = new Session(-1, -1, "", -1);
+            return str;
+        }
     }
 }

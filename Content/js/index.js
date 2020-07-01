@@ -99,7 +99,10 @@ async function catchInfo() {
     else if (startdate == "" || enddate == "") {
         alert("Please fill in dates!");
     }
-    data = { type: apartmentsType, address: place, num_people: parseInt(quantity), from: new Date(startdate.toString()), to: new Date(enddate.toString()) }
-    await Insert_Request_Infos("/ApartmentsVisitor/CatchInfos", JSON.stringify(data));
-    await window.location.replace(WebSiteUrl + "/ApartmentsVisitor/Index");
+    else {
+        data = { type: apartmentsType, address: place, num_people: parseInt(quantity), from: new Date(startdate.toString()), to: new Date(enddate.toString()) }
+        await Insert_Request_Infos("/ApartmentsVisitor/CatchInfos", JSON.stringify(data));
+        await window.location.replace(WebSiteUrl + "/ApartmentsVisitor/Index");
+    }
+   
 }

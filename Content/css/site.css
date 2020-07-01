@@ -74,9 +74,18 @@ body {
 .loginBtn {
     position: relative;
     border: none;
-    color: black;
+    color: white;
     cursor: pointer;
     width: 15%;
+    background-color: forestgreen;
+}
+.logoutBtn {
+    position: relative;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 15%;
+    background-color: orangered;
 }
 
 .userBtn {
