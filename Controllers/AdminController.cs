@@ -103,7 +103,7 @@ namespace WebHome.Controllers
             try
             {
                 var db = new DB();
-                var Query = @"select user_id, usrname, email, accepted from register";
+                var Query = @"select user_id, usrname, email, accepted,images from register";
                 var cmd = new NpgsqlCommand();
                 cmd.CommandText = Query;
                 cmd.Connection = db.npgsqlConnection;
@@ -122,6 +122,8 @@ namespace WebHome.Controllers
                         obj.Add(DataReader.GetValue(1).ToString());
                         obj.Add(DataReader.GetValue(2).ToString());
                         obj.Add(DataReader.GetValue(3).ToString());
+                        var img = "<img src=' " + DataReader.GetValue(4).ToString() + " ' style='height:80px; width:80px'>";
+                        obj.Add(img);
                         obj1.Add(obj);
                     }
                    

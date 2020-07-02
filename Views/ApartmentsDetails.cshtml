@@ -44,13 +44,14 @@
     <label for="desc"><b>Description :</b></label><textarea class="inpu" id="detailsdescription" rows="3" cols="80" name="desc"> @WebHome.Controllers.ApartmentsDetailsController.apartment.description</textarea><br /><br />
     <label for="rule"><b>Rules :</b></label><textarea class="inpu" id="detailsrules" rows="3" cols="80" name="rule"> @WebHome.Controllers.ApartmentsDetailsController.apartment.rules</textarea><br /><br />
     <label for="ima"><b>Image :</b></label><input type="text" class="inpu" placeholder="Enter Image Path" name="ima" id="detailsimageflat"><br /><br />
-
+    <img class="mySlides" src="@WebHome.Controllers.ApartmentsDetailsController.apartment.images" style="width:50%">
+    <br/><br/>
     <label for="start1"><b>From:</b></label><input type="text" id="detailsstartdate1" name="start1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.free_from ">
     <label for="end1"><b>To:</b></label><input type="text" id="detailsenddate1" name="end1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.free_to ">
     <label for="dstart1"><b>Change From:</b></label><input type="date" id="dstartdate1" name="dstart1"><label for="dend1"><b>To:</b></label><input type="date" id="denddate1" name="dend1">
     <br /><br />
     <button type="button" class="registerButton" onclick="UpdatePlace()">Update Place</button>
-    <br/>
+    <br />
     <button type="button" class="deleteButton" onclick="DeletePlace()">Delete Place</button>
     <script type="text/javascript">
         var WebSiteUrl = "@Configs.WebSiteUrl";

@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewData["Title"] = "ApartmentRent";
+}
+
+<h1>Rent Apartment</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/apartmentrent.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
+</head>
+<body>
+    <details>
+        <summary><b>Place General Information</b></summary>
+        <br />
+        <label><b>Number of beds :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.num_beds beds</p>
+        <br />
+        <label><b>Number of bathrooms :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.num_baths bathrooms</p>
+        <br />
+        <label><b>Number of bedrooms :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.num_bedrooms bedrooms </p>
+        <br />
+        <label><b>Type of Apartment:</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.type_description type</p>
+        <br />
+        <label><b>Area :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.area  squared meters </p>
+        <br />
+    </details>
+    <br />
+    <details>
+        <summary><b>Description</b></summary>
+        <br />
+        <label><b>Place is described from host as :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.description</p>
+        <br />
+    </details>
+    <br />
+    <details>
+        <summary><b>Rules</b></summary>
+        <br />
+        <label><b>Rules for this place are :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.rules</p>
+        <br />
+    </details>
+    <br />
+    <details>
+        <summary><b>Location</b></summary>
+        <br />
+        <label><b>Address :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.apartment.apartment.address </p>
+        <br />
+        <div id="smap" class="map"></div>
+    </details>
+    <br />
+    <details>
+        <summary><b>View Apartment</b></summary>
+        <br />
+        <img class="mySlides" src="@WebHome.Controllers.ApartmentRentController.apartment.images" style="width:50%">
+        <br />
+    </details>
+    <br />
+    <details>
+        <summary><b>Host Info and Communication</b></summary>
+        <br />
+        <label><b>Host is :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.host.name @WebHome.Controllers.ApartmentRentController.host.surname </p>
+        <br />
+        <img class="mySlides" src="@WebHome.Controllers.ApartmentRentController.host.images" style="width:50%">
+        <br />
+        <label><b>Email :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.host.email</p>
+        <br />
+        <label><b>Phone number :</b></label>
+        <p>@WebHome.Controllers.ApartmentRentController.host.phone_number</p>
+    </details>
+    <br />
+    <script type="text/javascript">
+            var WebSiteUrl = "@Configs.WebSiteUrl";
+    </script>
+    <script src="~/js/apartmentrent.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

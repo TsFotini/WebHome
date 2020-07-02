@@ -29,6 +29,28 @@ async function Get_Data_Aprtments_Visitors(url, data) {
     return data2;
 }
 
+async function Get_Info(url, data) {
+    await $.ajax(url, {
+        method: "GET",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        traditional: true,
+        async: true
+    }).done(function (result) {
+        
+    }).fail(function (xhr) {
+
+    });
+   
+}
+
+async function transportdata(id) {
+    await Get_Info(WebSiteUrl + '/ApartmentRent/GetApartment?value=' + id.toString());
+    await Get_Info(WebSiteUrl + '/ApartmentRent/GetUserHost');
+    await window.location.replace(WebSiteUrl + "/ApartmentRent/Index");
+}
+
 async function Create_table() {
 
     var table = $('#exampleApartments').DataTable({
@@ -46,7 +68,7 @@ async function Create_table() {
     });
     $('#exampleApartments tbody').on('click', 'tr', function () {
         var data = table.row(this).data();
-        getMyModal(data[0]);
+        transportdata(data[0]);
     });
 }
 

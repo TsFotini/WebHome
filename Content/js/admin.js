@@ -106,6 +106,7 @@ async function Create_table() {
                 { title: "USERNAME" },
                 { title: "EMAIL" },
                 { title: "ACCEPTED" },
+                { title: "IMAGE"}
             ]
     });
     $('#example tbody').on('click', 'tr', function () {
