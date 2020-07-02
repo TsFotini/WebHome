@@ -15,7 +15,7 @@ namespace WebHome.Controllers
 {
     public class LoginController : Controller
     {
-        public static Session user_session_created = new Session(-1, -1, "", -1);
+        public static Session user_session_created = new Session(-1, -1, "Visitor", -1);
         public IActionResult Index()
         {
             return View("/Views/Login.cshtml");

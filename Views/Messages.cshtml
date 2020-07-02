@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<h1>Messages</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/message.css" />
+</head>
+<body>
+    <ul class="navbar-nav flex-grow-1">
+        <li class="liid">
+            <a class="nav-link text-dark" asp-area="" asp-controller="ApartmentRent" asp-action="Index" style="position: center;"><u> Return to Apartment's Details Page </u></a>
+        </li>
+    </ul>
+    <br /><br />
+    <label for="fromuser"><b>From :</b></label>
+    <br />
+    <input type="text" class="inpu" name="fromuser" id="from_user" value="@WebHome.Controllers.LoginController.user_session_created.usrname">
+    <br />
+    <br />
+
+    <label for="to"><b>To : </b></label>
+    <br />
+    <input type="text" class="inpu" name="to" id="to_user" value="@WebHome.Controllers.ApartmentRentController.host.usrname">
+    <br />
+    <br />
+    <label for="mess"><b>Message Body :</b></label>
+    <br />
+    <textarea class="inpu" id="message" rows="3" cols="80" name="mess"></textarea><br /><br />
+    <br />
+    <br />
+    <button class="sendButton" onclick="Send()">Send</button>
+    <br />
+    <button class="bookButton" onclick="Book()">Book Now</button>
+    <div id="myModal1" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Book Apartment</h2>
+            </div>
+            <div class="modal-body" id="pop">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var currUserlogged = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+        var currhost = "@WebHome.Controllers.ApartmentRentController.host.user_id";
+        var currapartment = "@WebHome.Controllers.ApartmentRentController.apartment.apartment.id";
+        var currfrom = "@WebHome.Controllers.ApartmentRentController.apartment.apartment.free_from";
+        var currto = "@WebHome.Controllers.ApartmentRentController.apartment.apartment.free_to";
+    </script>
+    <script src="~/js/messages.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
