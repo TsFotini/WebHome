@@ -41,33 +41,5 @@ namespace WebHome.Controllers
             }
             return Ok();
         }
-
-        [HttpPost]
-        public IActionResult Book([FromBody] string value)
-        {
-            try
-            {
-                Booking values = JsonConvert.DeserializeObject<Booking>(value);
-                var db = new DB();
-                var Query = @"INSERT INTO booking (from_user_id, apartment_id, closed, reserved_from, reserved_to) 
-                                VALUES (@from_user_id, @apartment_id, @closed, @reserved_from, @reserved_to)";
-                var cmd = new NpgsqlCommand();
-                cmd.CommandText = Query;
-                cmd.Parameters.AddWithValue("@from_user_id", values.from_user_id);
-                cmd.Parameters.AddWithValue("@closed", values.closed);
-                cmd.Parameters.AddWithValue("@apartment_id", values.apartment_id);
-                cmd.Parameters.AddWithValue("@reserved_from", values.reserved_from);
-                cmd.Parameters.AddWithValue("@reserved_to", values.reserved_to);
-                cmd.Connection = db.npgsqlConnection;
-                cmd.ExecuteNonQuery();
-                db.close();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return Ok();
-        }
-
     }
 }

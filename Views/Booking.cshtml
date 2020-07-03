@@ -35,6 +35,7 @@
     <label for="calc"> <b>Total cost :</b></label> <input type="text" class="inpu" name="cals" id="calc_cost"><br /><br />
     <label for="ca"> <b>Cost per person for one day :</b></label> <input type="text" class="inpu" name="ca" id="costdayperson" value="@WebHome.Controllers.ApartmentRentController.apartment.cost_per_person"><br /><br />
     <label for="caa"> <b>Total cost per person :</b></label> <input type="text" class="inpu" name="caa" id="costdaypersontotal"><br /><br />
+    <button type="button" class="confirmButton" onclick="ConfirmPlace()">Confirm and Book</button>
     <script type="text/javascript">
         var WebSiteUrl = "@Configs.WebSiteUrl";
         var currUserlogged = "@WebHome.Controllers.LoginController.user_session_created.user_id";

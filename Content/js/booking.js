@@ -45,3 +45,25 @@ function checkAll() {
     }
     
 }
+
+function Insert_Request(url, data) {
+    $.ajax(url, {
+        method: "POST",
+        dataType: "json",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+function ConfirmPlace() {
+    var from = document.getElementById('reservefrom').value;
+    var to = document.getElementById('reserveto').value;
+    var data = { from_user_id: parseInt(currUserlogged), apartment_id: parseInt(currapartment), closed: 0, reserved_from: new Date(from.toString()), reserved_to: new Date(to.toString()) }
+    Insert_Request(WebSiteUrl + "/Booking/Confirm", JSON.stringify(data));
+    alert("Please wait for host to accept your booking request!");
+}
