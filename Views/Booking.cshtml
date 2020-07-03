@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Booking";
+}
+
+<h1>Book Apartment</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/css/booking.css" />
+</head>
+<body>
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="ApartmentRent" asp-action="Index"><u> Return to Apartment's Details Page </u></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Messages" asp-action="Index"><u>Message host</u></a>
+            </li>
+        </ul>
+    </div>
+    <br /><br />
+    <h2>Please confirm apartment's details: </h2><br />
+    <p>@WebHome.Controllers.ApartmentRentController.apartment.apartment.address</p><br />
+    <img class="mySlides" src="@WebHome.Controllers.ApartmentRentController.apartment.images" style="width:50%">
+    <br /><br /><br />
+    <label for="start1"><b>From:</b></label><input type="text" id="detailsstartdate_apartment" name="start1" value="@WebHome.Controllers.ApartmentRentController.apartment.apartment.free_from ">
+    <label for="end1"><b>To:</b></label><input type="text" id="detailsenddate1_apartment" name="end1" value="@WebHome.Controllers.ApartmentRentController.apartment.apartment.free_to ">
+    <label for="dstart1"><b>Change From:</b></label><input type="date" id="reservefrom" name="dstart1" onchange="checkAll()"><label for="dend1"><b>To:</b></label><input type="date" id="reserveto" name="dend1" onchange="checkAll()">
+    <br /><br />
+    <label for="bedr"> <b>Number of days you will occupy the apartment :</b></label> <input type="number" class="inpu" name="bedr" id="numdays"><br /><br />
+    <label for="c"> <b>Cost per day :</b></label> <input type="text" class="inpu" name="c" id="costday" value="@WebHome.Controllers.ApartmentRentController.apartment.min_price"><br /><br />
+    <label for="calc"> <b>Total cost :</b></label> <input type="text" class="inpu" name="cals" id="calc_cost"><br /><br />
+    <label for="ca"> <b>Cost per person for one day :</b></label> <input type="text" class="inpu" name="ca" id="costdayperson" value="@WebHome.Controllers.ApartmentRentController.apartment.cost_per_person"><br /><br />
+    <label for="caa"> <b>Total cost per person :</b></label> <input type="text" class="inpu" name="caa" id="costdaypersontotal"><br /><br />
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var currUserlogged = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+        var currhost = "@WebHome.Controllers.ApartmentRentController.host.user_id";
+        var currapartment = "@WebHome.Controllers.ApartmentRentController.apartment.apartment.id";
+        var currfrom = "@WebHome.Controllers.ApartmentRentController.apartment.apartment.free_from";
+        var currto = "@WebHome.Controllers.ApartmentRentController.apartment.apartment.free_to";
+    </script>
+    <script src="~/js/booking.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
