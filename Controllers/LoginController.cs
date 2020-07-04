@@ -89,6 +89,14 @@ namespace WebHome.Controllers
             {
                 res = 2; //host 
             }
+            else if(user_session_created.isloggedIn == 1 && user_session_created.role_id == 2)
+            {
+                res = 3; //tenant
+            }
+            else if(user_session_created.isloggedIn == 1 && user_session_created.role_id == 3)
+            {
+                res = 4; //both
+            }
             var obj = new
             {
                 valid = res

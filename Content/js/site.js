@@ -143,13 +143,23 @@ async function Get_Log_Request(url, data) {
         if (valid.valid == 1) {
             alert("Admin is in");
             window.location.replace(WebSiteUrl + "/Admin/Index");
-           
+
         }
         else if (valid.valid == 2) {
             alert("Host is in");
             window.location.replace(WebSiteUrl + "/Apartments/Index");
         }
+        else if (valid.valid == 4) {
+            alert("Host and Tenant");
+            window.location.replace(WebSiteUrl + "/Apartments/Index");
+            
+        }
+        else if (valid.valid == 3) {
+            alert("Tenant is in!");
+            window.location.replace(WebSiteUrl + "/TenantMessages/Index");
+        }
         else {
+            alert("Wrong creadentials inserted! Please try again!");
             window.location.replace(WebSiteUrl);
         }
         return valid;
@@ -175,10 +185,18 @@ function AccountLogIn(is_logged_in,role_id) {
                 '</ul>';
             $('#pageuser').append(str);
         }
-        else if (role_id == 1) {
+        else if (role_id == 1 || role_id == 3) {
             str = '<ul class="navbar-nav flex-grow-1">' +
                 '<li class="nav-item">' +
                 '<button class="pageBtn" onclick="RelocateHost()">Host Page</button>' +
+                '</li>' +
+                '</ul>';
+            $('#pageuser').append(str);
+        }
+        else if (role_id == 2) {
+            str = '<ul class="navbar-nav flex-grow-1">' +
+                '<li class="nav-item">' +
+                '<button class="pageBtn" onclick="RelocateTenant()">Message Page</button>' +
                 '</li>' +
                 '</ul>';
             $('#pageuser').append(str);
@@ -216,6 +234,10 @@ async function RelocateAdmin() {
 
 async function RelocateHost() {
     await window.location.replace(WebSiteUrl + '/Apartments/Index');
+}
+
+async function RelocateTenant() {
+    await window.location.replace(WebSiteUrl + '/TenantMessages/Index');
 }
 
 function LogOut() {

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "TenantMessages";
+}
+
+<h1>Your Messages</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="~/css/tenantmessages.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+    <div id="myModalnewtenant" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Message</h2>
+            </div>
+            <div class="modal-body" id="newmodaltenant">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+    <br />
+    <h3> New messages </h3>
+    <table id="examplemessagestenant" class="display" width="100%"></table>
+    <br /> <br />
+    <h3> Old messages </h3>
+    <table id="exampleoldtenant" class="display" width="100%"></table>
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var curruserid_ = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+    </script>
+    <script src="~/js/tenantmessages.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

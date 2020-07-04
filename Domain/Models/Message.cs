@@ -14,7 +14,8 @@ namespace WebHome.Domain.Models
     {
         public int to_user_id { get; set; }
         public int apartment_id { get; set; }
-        
+        public string image_apartment { get; set; }
+
     }
     public class Message : ReceiverMessage
     {

@@ -88,16 +88,17 @@ async function SubmitPlace() {
     if (address == "" || price == "" || area == "" || priceperson == "" || people == "" || beds == "" || baths == "" || bedrooms == "" || to == "" || from == "") {
         alert("Please fill in the boxes that need to be filled!");
     }
-    answer = false; 
-    if (lonlat == "") {
-       answer = confirm("Do you want to click on the map to insert coordinate?");
-    }
-    var apartment = {
-        address: address,
-        free_from: new Date(from.toString()),
-        free_to: new Date(to.toString())
-    }
-    var data = {
+    else {
+        answer = false;
+        if (lonlat == "") {
+            answer = confirm("Do you want to click on the map to insert coordinate?");
+        }
+        var apartment = {
+            address: address,
+            free_from: new Date(from.toString()),
+            free_to: new Date(to.toString())
+        }
+        var data = {
             user_id: parseInt(usrid),
             reach_place: reach,
             max_people: parseInt(people),
@@ -113,12 +114,14 @@ async function SubmitPlace() {
             type_description: types.toString(),
             apartment: apartment,
             images: image.toString()
-    }
-    if (answer == false) {
-        Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', JSON.stringify(data));
-        location.reload();
-    }
+        }
+        if (answer == false) {
+            Insert_Request(WebSiteUrl + '/Apartments/InsertApartment', JSON.stringify(data));
+           
+        }
         
+    }
+   
    
     
 }
