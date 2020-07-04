@@ -90,8 +90,8 @@ function passphoto() {
     Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdatePhoto', photo);
 }
 
-async function Put_Data_Register(url, data) {
-    await $.ajax(url, {
+function Put_Data_Register(url, data) {
+    $.ajax(url, {
         method: "PUT",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
@@ -103,8 +103,8 @@ async function Put_Data_Register(url, data) {
     });
 }
 
-async function Put_Data_Username(url, data) {
-    await $.ajax(url, {
+function Put_Data_Username(url, data) {
+    $.ajax(url, {
         method: "PUT",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

@@ -10,7 +10,6 @@ namespace WebHome.Domain.Services
 {
     public class UserService : IUsers
     {
-
         public User GetUser(int id)
         {
             var user = new User();
@@ -101,6 +100,42 @@ namespace WebHome.Domain.Services
 
             }
             return res;
+        }
+
+        public int GetIDofUser(string username)
+        {
+            int id = 0;
+            try
+            {
+                var db = new DB();
+                var Query = @"select user_id from register where usrname = @m_usrname";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_usrname", username);
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+
+                NpgsqlDataReader DataReader;
+
+                DataReader = cmd.ExecuteReader();
+
+                cmd.Dispose();
+                if (DataReader.HasRows)
+                {
+                    while (DataReader.Read())
+                    {
+                        id = Convert.ToInt32(DataReader.GetValue(0));
+                    }
+
+                }
+                DataReader.Close();
+                DataReader.Dispose();
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return id;
         }
 
 

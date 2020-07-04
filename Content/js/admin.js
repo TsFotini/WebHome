@@ -76,8 +76,8 @@ async function getMyModal(id) {
     }
 }
 
-async function Insert_Acception(url, data) {
-    await $.ajax(url, {
+function Insert_Acception(url, data) {
+    $.ajax(url, {
         method: "PUT",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
@@ -90,11 +90,11 @@ async function Insert_Acception(url, data) {
 }
 
 
-async function Acception(data) {
+function Acception(data) {
     click_accepted++;
     ok = document.getElementById("acceptButton");
     console.log(data);
-    await Insert_Acception(WebSiteUrl + '/Admin/SetAccepted',data);
+    Insert_Acception(WebSiteUrl + '/Admin/SetAccepted',data);
 }
 
 async function Create_table() {

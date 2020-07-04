@@ -1,5 +1,5 @@
-﻿async function Insert_Request(url, data) {
-    await $.ajax(url, {
+﻿function Insert_Request(url, data) {
+    $.ajax(url, {
         method: "POST",
         dataType: "json",
         async: true,

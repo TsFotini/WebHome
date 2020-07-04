@@ -54,8 +54,8 @@ function checkIfDecimal() {
 }
 
 
-async function Insert_Request(url, data) {
-    await $.ajax(url, {
+function Insert_Request(url, data) {
+    $.ajax(url, {
         method: "POST",
         dataType: "json",
         async: true,
@@ -201,7 +201,6 @@ async function Get_Info(url, data) {
         async: true
     }).done(function (result) {
         info = result[0];
-        console.log(info.usrname);
     }).fail(function (xhr) {
 
     });
@@ -219,9 +218,9 @@ async function Create_table() {
             { title: "FREE UP TO" }
         ]
     });
-    $('#example1 tbody').on('click', 'tr',async function () {
+    $('#example1 tbody').on('click', 'tr',function () {
         var data = table.row(this).data();
-        await getMyModal(data[0]);
+        getMyModal(data[0]);
     });   
 }
 

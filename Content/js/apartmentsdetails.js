@@ -25,6 +25,20 @@ function Insert_Request_Details(url, data) {
     });
 }
 
+async function Insert_Request_Data(url, data) {
+    await $.ajax(url, {
+        method: "POST",
+        dataType: "json",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
 var lonlat = "";
 async function ChangedAddress() {
     alert("Please click on the map to insert the coordinates of the new address!");
@@ -107,6 +121,12 @@ function Delete_Request_Details(url, data) {
     }).fail(function (xhr) {
 
     });
+}
+
+async function sendData() {
+    var data = { apartment_id: parseInt(current_apartment_id), to_user_id: parseInt(curruserid) }
+    await Insert_Request_Data(WebSiteUrl + "/MessagesApartment/GetMessagesApartment", data) 
+    await window.location.replace(WebSiteUrl + "/MessagesApartment/Index");
 }
 
 function DeletePlace() {

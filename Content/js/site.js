@@ -119,8 +119,8 @@ function Get_Usernames_Request(url, data) {
 }
 
 
-async function Insert_Data_Register(url, data) {
-    await $.ajax(url, {
+function Insert_Data_Register(url, data) {
+    $.ajax(url, {
         method: "POST",
         dataType: "json",
         contentType: "application/json; charset=utf-8",

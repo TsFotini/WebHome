@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "MessagesApartment";
+}
+
+<h1>Messages</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+    <link rel="stylesheet" href="~/css/messagesapartment.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="ApartmentsDetails" asp-action="Index"><u>Return to Apartments Details Page</u></a>
+        </li>
+    </ul>
+    <div id="myModalnew" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Message</h2>
+            </div>
+            <div class="modal-body" id="newmodal">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+    <br />
+    <h3> New messages </h3>
+    <table id="examplemessages" class="display" width="100%"></table>
+    <br /> <br />
+    <h3> Old messages </h3>
+    <table id="exampleold" class="display" width="100%"></table>
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var curruserid = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+        var current_apartment_id = "@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.id ";
+
+    </script>
+    <script src="~/js/messagesapartment.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
