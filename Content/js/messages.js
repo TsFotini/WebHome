@@ -20,6 +20,12 @@ function Send() {
 }
 
 function Book() {
-    window.location.replace(WebSiteUrl + "/Booking/Index");
+    if (curr_role != -1) {
+        window.location.replace(WebSiteUrl + "/Booking/Index");
+    }
+    else {
+        alert("Please Log in to confirm booking!");
+    }
+   
 }
 
