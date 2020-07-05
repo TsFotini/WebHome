@@ -141,6 +141,28 @@ namespace WebHome.Controllers
             return str;
         }
 
-        
+        [HttpDelete]
+        public IActionResult Delete([FromBody]string value)
+        {
+            try
+            {
+                var db = new DB();
+                var Query = @"DELETE FROM register WHERE user_id = @m_id";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_id", Convert.ToInt32(value));
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+                db.close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Ok();
+
+        }
+
+
     }
 }

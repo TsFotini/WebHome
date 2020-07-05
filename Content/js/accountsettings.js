@@ -43,6 +43,8 @@ function Get_Usernames_Request(url, data) {
 
 function UserSubmit() {
     Put_Data_Register(WebSiteUrl + '/AccountSettings/UpdateAccount');
+    alert("Please login again!");
+    window.location.replace(WebSiteUrl + "/Login/Index");
 }
 
 function UpdateUserName() {

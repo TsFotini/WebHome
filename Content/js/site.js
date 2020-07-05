@@ -185,7 +185,7 @@ function AccountLogIn(is_logged_in,role_id) {
                 '</ul>';
             $('#pageuser').append(str);
         }
-        else if (role_id == 1 || role_id == 3) {
+        else if (role_id == 1) {
             str = '<ul class="navbar-nav flex-grow-1">' +
                 '<li class="nav-item">' +
                 '<button class="pageBtn" onclick="RelocateHost()">Host Page</button>' +
@@ -200,6 +200,20 @@ function AccountLogIn(is_logged_in,role_id) {
                 '</li>' +
                 '</ul>';
             $('#pageuser').append(str);
+        }
+        else if (role_id == 3) {
+            str = '<ul class="navbar-nav flex-grow-1">' +
+                '<li class="nav-item">' +
+                '<button class="pageBtn" onclick="RelocateHost()">Host Page</button>' +
+                '</li>' +
+                '</ul>';
+            $('#pageuser').append(str);
+            str1 = '<ul class="navbar-nav flex-grow-1">' +
+                '<li class="nav-item">' +
+                '<button class="pageBtn" onclick="RelocateTenant()">Message Page</button>' +
+                '</li>' +
+                '</ul>';
+            $('#pageuser1').append(str1);
         }
         var str_logout = '<ul class="navbar-nav flex-grow-1">' +
             '<li class="nav-item">' +

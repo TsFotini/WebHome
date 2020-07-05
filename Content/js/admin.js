@@ -36,7 +36,29 @@ async function Get_Info(url, data) {
     return info;
 }
 
+function Delete_Request_Details(url, data) {
+    $.ajax(url, {
+        method: "DELETE",
+        dataType: "json",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+
+id_ = 0;
+function deleted() {
+    Delete_Request_Details(WebSiteUrl + '/Admin/Delete', id_.toString());
+    location.reload(true);
+}
+
 async function getMyModal(id) {
+    id_ = id;
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
@@ -56,7 +78,8 @@ async function getMyModal(id) {
         str = str + '<button type="button" class="acceptButton"'+ 'onclick="Acception(' + id +')">Accept</button>';
         $('#mb').append(str);   
     }
-   
+    var str1 = '<button class="deleteButton" onclick = "deleted()" > Delete</button>';
+    $('#mb').append(str1);  
     span.onclick = function () {
         modal.style.display = "none";
         document.getElementById("mb").innerHTML = "";
@@ -111,7 +134,17 @@ async function Create_table() {
     });
     $('#example tbody').on('click', 'tr', function () {
         var data = table.row(this).data();
-        getMyModal(data[0]);
+        
+        if (data[0] == -1) {
+            alert("Visitors do not have any information!");
+        }
+        else if (data[0] == 0) {
+            alert("Hey this is you friend!");
+            getMyModal(data[0]);
+        }
+        else {
+            getMyModal(data[0]);
+        }
     });
 }
 

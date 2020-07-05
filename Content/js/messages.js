@@ -20,11 +20,15 @@ function Send() {
 }
 
 function Book() {
-    if (curr_role != -1) {
-        window.location.replace(WebSiteUrl + "/Booking/Index");
+    if (curr_role == -1 ) {
+        alert("Please Log in to confirm booking!");
+        window.location.replace(WebSiteUrl + "/Login/Index");
+    }
+    else if (curr_role == 1) {
+        alert("You are only host!");
     }
     else {
-        alert("Please Log in to confirm booking!");
+        window.location.replace(WebSiteUrl + "/Booking/Index");
     }
    
 }
