@@ -42,6 +42,7 @@ async function Get_Data_old(url, data) {
             datamore.push(result[i].message_body.toString());
             datamore.push(result[i].images.toString());
             datamore.push(result[i].seen.toString());
+            datamore.push('<button class="deleteButton" onclick="deleted()">Delete</button>');
             data2.push(datamore);
         }
     }).fail(function (xhr) {
@@ -67,6 +68,20 @@ function Insert_Request(url, data) {
 function Insert_From(url, data) {
     $.ajax(url, {
         method: "POST",
+        dataType: "json",
+        async: false,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+function Delete_Request_Details(url, data) {
+    $.ajax(url, {
+        method: "DELETE",
         dataType: "json",
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -96,6 +111,12 @@ async function Get_Info(url, data) {
 }
 
 click_accepted = 0;
+
+deleted_ = 0;
+function deleted(id) {
+    deleted_++;
+    Delete_Request_Details(WebSiteUrl + '/MessagesApartment/Delete', id.toString());
+}
 
 async function Reply() {
     var user = document.getElementById("user").value;
@@ -139,7 +160,7 @@ async function Create_table() {
             { title: "FROM" },
             { title: "MESSAGE" },
             { title: "USER" },
-            { title: "NEW MESSAGE" }
+            { title: "NEW MESSAGE" },
         ]
     });
     $('#examplemessages tbody').on('click', 'tr', function () {
@@ -158,13 +179,17 @@ async function Create_table_old() {
             { title: "FROM" },
             { title: "MESSAGE" },
             { title: "USER" },
-            { title: "SEEN" }
+            { title: "SEEN" },
+            { title: "REMOVE" }
         ]
     });
-    /*$('#example1 tbody').on('click', 'tr', async function () {
+    $('#exampleold tbody').on('click', 'tr', async function () {
         var data = table.row(this).data();
-        await getMyModal(data[0]);
-    });*/
+        if (deleted_ == 1) {
+            deleted(data[0]);
+            location.reload(true);
+        }
+    });
 }
 
 Create_table();

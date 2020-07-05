@@ -44,6 +44,7 @@ async function Get_Data_old(url, data) {
             datamore.push(result[i].images.toString());
             datamore.push(result[i].seen.toString());
             datamore.push(result[i].image_apartment.toString());
+            datamore.push('<button class="deleteButton" onclick="deleted()">Delete</button>');
             data2.push(datamore);
         }
     }).fail(function (xhr) {
@@ -149,6 +150,26 @@ async function Create_table() {
         getMyModal(data[0]);
     });
 }
+function Delete_Request_Details(url, data) {
+    $.ajax(url, {
+        method: "DELETE",
+        dataType: "json",
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data)
+    }).done(function (result) {
+
+    }).fail(function (xhr) {
+
+    });
+}
+
+
+deleted_ = 0;
+function deleted(id) {
+    deleted_++;
+    Delete_Request_Details(WebSiteUrl + '/TenantMessages/Delete', id.toString());
+}
 
 
 
@@ -161,13 +182,17 @@ async function Create_table_old() {
             { title: "MESSAGE" },
             { title: "USER" },
             { title: "SEEN" },
-            { title: "APARTMENT" }
+            { title: "APARTMENT" },
+            { title: "REMOVE" }
         ]
     });
-    /*$('#example1 tbody').on('click', 'tr', async function () {
+    $('#exampleoldtenant tbody').on('click', 'tr', async function () {
         var data = table.row(this).data();
-        await getMyModal(data[0]);
-    });*/
+        if (deleted_ == 1) {
+            deleted(data[0]);
+            location.reload(true);
+        }
+    });
 }
 
 Create_table();

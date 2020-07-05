@@ -90,13 +90,16 @@ async function Create_table() {
     $('#examplebooking tbody').on('click', 'tr', function () {
         var data = table.row(this).data();
         if (accepted == 1) {
-            accept(data[0])
+            accept(data[0]);
+            location.reload(true);
         }
         if (deleted_ == 1) {
             deleted(data[0]);
+            location.reload(true);
         }
         
     });
+   
 }
 
 Create_table();

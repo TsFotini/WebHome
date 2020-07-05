@@ -56,12 +56,10 @@ namespace WebHome.Controllers
             try
             {
                 var db = new DB();
-                var Query = @"UPDATE messages SET seen = @m_seen where apartment_id = @m_apartment_id and to_user_id = @m_user_id and id = @m_message";
+                var Query = @"UPDATE messages SET seen = @m_seen where id = @m_message";
                 var cmd = new NpgsqlCommand();
                 cmd.CommandText = Query;
                 cmd.Parameters.AddWithValue("@m_seen", "https://cdn.onlinewebfonts.com/svg/img_122337.png");
-                cmd.Parameters.AddWithValue("@m_apartment_id", receiver.apartment_id);
-                cmd.Parameters.AddWithValue("@m_user_id", receiver.to_user_id);
                 cmd.Parameters.AddWithValue("@m_message", Convert.ToInt32(value));
                 cmd.Connection = db.npgsqlConnection;
                 cmd.ExecuteNonQuery();
@@ -124,6 +122,28 @@ namespace WebHome.Controllers
 
             }
             return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete([FromBody]string value)
+        {
+            try
+            {
+                var db = new DB();
+                var Query = @"DELETE FROM messages WHERE id = @m_id";
+                var cmd = new NpgsqlCommand();
+                cmd.CommandText = Query;
+                cmd.Parameters.AddWithValue("@m_id", Convert.ToInt32(value));
+                cmd.Connection = db.npgsqlConnection;
+                cmd.ExecuteNonQuery();
+                db.close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Ok();
+
         }
 
     }
