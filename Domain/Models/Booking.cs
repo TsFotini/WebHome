@@ -14,4 +14,11 @@ namespace WebHome.Domain.Models
         public int apartment_id { get; set; }
         public int from_user_id { get; set; }
     }
+
+    public class BookHost : Booking
+    {
+        public string image_apartment { get; set; }
+        public string image_user { get; set; }
+        public string from_username { get; set; }
+    }
 }

@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "BookingHost";
+}
+
+<h1>Bookings</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="~/css/bookinghost.css" />
+</head>
+<body>
+    <table id="examplebooking" class="display" width="100%"></table>
+    <script type="text/javascript">
+        var WebSiteUrl = "@Configs.WebSiteUrl";
+        var currUserlogged = "@WebHome.Controllers.LoginController.user_session_created.user_id";
+    </script>
+    <script src="~/js/bookinghost.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

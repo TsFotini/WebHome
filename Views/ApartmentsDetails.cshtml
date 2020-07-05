@@ -27,11 +27,10 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Apartments" asp-action="Index"><u>Return to Apartments Page</u></a>
         </li>
-        
     </ul>
     <br />
     <button class="loginBtn" onclick="sendData()">Check Messages</button>
-    <br/>
+    <br/><br/>
     <label for="address"><b>Address :</b></label><input type="text" class="inpu" placeholder="Enter Address" name="address" id="detailsaddress" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.apartment.address" onchange="ChangedAddress()">
     <br /><br /><label for="reach"><b>How to reach place  : </b></label><br /><input type="text" class="inpu" placeholder="Enter busses, metro, other" name="reach" id="detailsreach1" value="@WebHome.Controllers.ApartmentsDetailsController.apartment.reach_place"><br /><br />
     <div id="detailsmap" class="map"></div>
